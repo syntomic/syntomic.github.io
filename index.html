@@ -60,7 +60,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"syntomic.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"X7uJH087OVm5P8ldgVc4at96-gzGzoHsz","app_key":"q25XgaiWkhJS1tgOLC0DWCVL","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"syntomic.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"X7uJH087OVm5P8ldgVc4at96-gzGzoHsz","app_key":"q25XgaiWkhJS1tgOLC0DWCVL","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -70,23 +70,6 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
-
 
 
   
@@ -205,7 +188,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Pure Mathematics to Everything"></span>
+            <span id="subtitle" data-typed-text="Pure mathematics to everything"></span>
           
         </div>
 
@@ -241,17 +224,17 @@
     
     
     <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
-        <a href="/2023/04/28/SQL-Is-All-Your-Need-Flink-SQL/" target="_self">
-          SQL Is All Your Need: Flink SQL
+        <a href="/2023/05/11/SQL-Is-All-Your-Need-Flink-SQL-UDF/" target="_self">
+          SQL Is All Your Need: Flink SQL UDF
         </a>
-      </h1>
+      </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/04/28/SQL-Is-All-Your-Need-Flink-SQL/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/05/11/SQL-Is-All-Your-Need-Flink-SQL-UDF/" target="_self">
         <div>
-          大数据开发简单地说就是从一个存储系统经过计算引擎的加工到另外一个存储系统的过程，如果把存储系统抽象为一张表，利用SQL进行处理，那么其实就和传统的数据库查询没有本质的区别。本篇文章利用Paimon和Flink SQL实现数据开发相关示例，迈向SQL Is All Your Need的第一步。
+          随着数据处理的逻辑变得越来越复杂，编写的SQL也会变得越加复杂，有时甚至会感觉SQL力不从心。这个时候就需要扩展SQL的表达能力，而UDF(用户自定义函数)就是这样一种扩张开发的机制，拓展系统的内置函数，实现自定义逻辑。本编文章我们就从具体场景出发，使用各种Flink UDF去优化或解决相关问题。
         </div>
       </a>
 
@@ -259,41 +242,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2023-04-28 14:44" pubdate>
-              2023-04-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/03/05/%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_self">
-          个人开发环境配置
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/05/%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_self">
-        <div>
-          编程首先就是需要一个开发环境，本篇文章记录了个人认为Linux平台下搭建一个良好开发环境的相应配置。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-03-05 13:48" pubdate>
-              2023-03-05
+            <time datetime="2023-05-11 17:48" pubdate>
+              2023-05-11
             </time>
           </div>
         
@@ -323,6 +273,128 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
+              <a href="/tags/Flink-SQL/">#Flink SQL</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/04/28/SQL-Is-All-Your-Need-Flink-SQL/" target="_self">
+          SQL Is All Your Need: Flink SQL
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/04/28/SQL-Is-All-Your-Need-Flink-SQL/" target="_self">
+        <div>
+          大数据开发简单地说就是从一个存储系统经过计算引擎的加工到另外一个存储系统的过程，如果把存储系统抽象为一张表，利用SQL进行处理，那么其实就和传统的数据库查询没有本质的区别。本篇文章利用Paimon和Flink SQL实现数据开发相关示例，迈向SQL Is All Your Need的第一步。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-04-28 14:44" pubdate>
+              2023-04-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Flink-SQL/">#Flink SQL</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/03/05/%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_self">
+          个人开发环境配置
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/03/05/%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_self">
+        <div>
+          编程首先就是需要一个开发环境，本篇文章记录了个人认为Linux平台下搭建一个良好开发环境的相应配置。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-03-05 13:48" pubdate>
+              2023-03-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%B6%E4%BB%96/" class="category-chain-item">其他</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
               <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">#环境配置</a>
             
           </div>
@@ -335,12 +407,12 @@
     
     
     <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
+      <h2 class="index-header">
         
         <a href="/2023/02/25/Java%E8%B0%83%E7%94%A8Python/" target="_self">
           Java调用Python
         </a>
-      </h1>
+      </h2>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/02/25/Java%E8%B0%83%E7%94%A8Python/" target="_self">
@@ -444,31 +516,6 @@
     </div>
   
   
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="leancloud-site-pv-container" style="display: none">
-        总访问量 
-        <span id="leancloud-site-pv"></span>
-         次
-      </span>
-    
-    
-      <span id="leancloud-site-uv-container" style="display: none">
-        总访客数 
-        <span id="leancloud-site-uv"></span>
-         人
-      </span>
-    
-    
-
-  
-</div>
-
-  
   
   
 </div>
@@ -489,7 +536,7 @@
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
@@ -519,8 +566,6 @@
 
 
 
-
-  <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
