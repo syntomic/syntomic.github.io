@@ -1,0 +1,863 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="syntomic">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="实时监控是Flink一个重要且复杂的应用场景，所以一般不会只采用SQL去实现。但本篇文章我们将从一个简单的问题出发，挑战只使用SQL满足逐渐复杂的需求，希望最终可以明确SQL的使用边界。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL Is All Your Need: Flink Dynamic SQL">
+<meta property="og:url" content="https://syntomic.github.io/2023/06/15/SQL-Is-All-Your-Need-Flink-Dynamic-SQL/index.html">
+<meta property="og:site_name" content="syntomic">
+<meta property="og:description" content="实时监控是Flink一个重要且复杂的应用场景，所以一般不会只采用SQL去实现。但本篇文章我们将从一个简单的问题出发，挑战只使用SQL满足逐渐复杂的需求，希望最终可以明确SQL的使用边界。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-15T01:38:06.000Z">
+<meta property="article:modified_time" content="2023-07-16T05:42:17.427Z">
+<meta property="article:author" content="syntomic">
+<meta property="article:tag" content="Flink SQL">
+<meta property="article:tag" content="Flink">
+<meta property="article:tag" content="Paimon">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>SQL Is All Your Need: Flink Dynamic SQL - syntomic</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"syntomic.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"X7uJH087OVm5P8ldgVc4at96-gzGzoHsz","app_key":"q25XgaiWkhJS1tgOLC0DWCVL","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>syntomic</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SQL Is All Your Need: Flink Dynamic SQL"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-15 09:38" pubdate>
+          2023年6月15日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">SQL Is All Your Need: Flink Dynamic SQL</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>实时监控是Flink一个重要且复杂的应用场景，所以一般不会只采用SQL去实现。但本篇文章我们将从一个简单的问题出发，挑战只使用SQL满足逐渐复杂的需求，希望最终可以明确SQL的使用边界。</p>
+<span id="more"></span>
+
+<h1 id="事先准备"><a href="#事先准备" class="headerlink" title="事先准备"></a>事先准备</h1><ul>
+<li><p>我们有日志流如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> `dwd_log` (<br>    `<span class="hljs-type">time</span>` STRING COMMENT <span class="hljs-string">&#x27;事件时间&#x27;</span>,<br>    `key_word` STRING COMMENT <span class="hljs-string">&#x27;日志标识&#x27;</span>,<br>    `key1` <span class="hljs-type">INT</span> COMMENT <span class="hljs-string">&#x27;指标&#x27;</span>,<br>    `key2` STRING COMMENT <span class="hljs-string">&#x27;维度&#x27;</span><br>) <span class="hljs-keyword">WITH</span> (<br>    ...<br>);<br></code></pre></td></tr></table></figure></li>
+<li><p>数据示例如下：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">&#123;&quot;time&quot;:&quot;2023-04-09 15:40:05&quot;,&quot;key_word&quot;:&quot;stdout&quot;,&quot;key1&quot;:5,&quot;key2&quot;:&quot;val1&quot;&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>我们将根据一些规则从这个日志流中筛选出关注的事件。</p>
+</li>
+</ul>
+<h1 id="阶段一：需求的开始"><a href="#阶段一：需求的开始" class="headerlink" title="阶段一：需求的开始"></a>阶段一：需求的开始</h1><blockquote>
+<p>规则1：每天日志关键字为<code>stdout</code>每个维度<code>key2</code>获得指标<code>key1</code>次数大于1的事件</p>
+</blockquote>
+<ul>
+<li><p>这个规则可以用简单的SQL实现如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>    <span class="hljs-number">1</span> <span class="hljs-keyword">AS</span> `rule_id`,<br>    DATE_FORMAT(`<span class="hljs-type">time</span>`, <span class="hljs-string">&#x27;yyyy-MM-dd 00:00:00&#x27;</span>) <span class="hljs-keyword">AS</span> `window_start`,<br>    `key2` <span class="hljs-keyword">AS</span> `key`,<br>    <span class="hljs-built_in">MAX</span>(`<span class="hljs-type">time</span>`) <span class="hljs-keyword">AS</span> `alert_time`,<br>    MAP[<span class="hljs-string">&#x27;key1&#x27;</span>, <span class="hljs-built_in">CAST</span>(<span class="hljs-built_in">COUNT</span>(`key1`) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">DOUBLE</span>)] <span class="hljs-keyword">AS</span> `alert_metrics`<br><span class="hljs-keyword">FROM</span><br>    `dwd_log`<br><span class="hljs-keyword">WHERE</span><br>    `key_word` <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;stdout&#x27;</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>    `key2`,<br>    DATE_FORMAT(`<span class="hljs-type">time</span>`, <span class="hljs-string">&#x27;yyyy-MM-dd 00:00:00&#x27;</span>)<br><span class="hljs-keyword">HAVING</span><br>    <span class="hljs-built_in">COUNT</span>(`key1`) <span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>所以对这种单个简单的统计规则，用Flink SQL实现会非常方便，但当规则越来越多时呢？</p>
+</li>
+</ul>
+<h1 id="阶段二：需求的增长"><a href="#阶段二：需求的增长" class="headerlink" title="阶段二：需求的增长"></a>阶段二：需求的增长</h1><blockquote>
+<p>规则2：每小时日志中不同维度<code>key2</code>数量大于2的事件</p>
+</blockquote>
+<ul>
+<li><p>当多个类似的需求出现时，直截了当的做法就是将不同规则<code>UNION</code>起来：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>    <span class="hljs-number">1</span> <span class="hljs-keyword">AS</span> `rule_id`,<br>    DATE_FORMAT(`<span class="hljs-type">time</span>`, <span class="hljs-string">&#x27;yyyy-MM-dd 00:00:00&#x27;</span>) <span class="hljs-keyword">AS</span> `window_start`,<br>    `key2` <span class="hljs-keyword">AS</span> `key`,<br>    <span class="hljs-built_in">MAX</span>(`<span class="hljs-type">time</span>`) <span class="hljs-keyword">AS</span> `alert_time`,<br>    MAP[<span class="hljs-string">&#x27;key1_cnt&#x27;</span>, <span class="hljs-built_in">CAST</span>(<span class="hljs-built_in">COUNT</span>(`key1`) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">DOUBLE</span>)] <span class="hljs-keyword">AS</span> `alert_metrics`<br><span class="hljs-keyword">FROM</span><br>    `dwd_log`<br><span class="hljs-keyword">WHERE</span><br>    `key_word` <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;stdout&#x27;</span><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>    `key2`,<br>    DATE_FORMAT(`<span class="hljs-type">time</span>`, <span class="hljs-string">&#x27;yyyy-MM-dd 00:00:00&#x27;</span>)<br><span class="hljs-keyword">HAVING</span><br>    <span class="hljs-built_in">COUNT</span>(`key1`) <span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span><br><span class="hljs-keyword">UNION</span> <span class="hljs-keyword">ALL</span><br><span class="hljs-keyword">SELECT</span><br>    <span class="hljs-number">2</span> <span class="hljs-keyword">AS</span> `rule_id`,<br>    DATE_FORMAT(`<span class="hljs-type">time</span>`, <span class="hljs-string">&#x27;yyyy-MM-dd HH:00:00&#x27;</span>) <span class="hljs-keyword">AS</span> `window_start`,<br>    `key_word` <span class="hljs-keyword">AS</span> `key`,<br>    <span class="hljs-built_in">MAX</span>(`<span class="hljs-type">time</span>`) <span class="hljs-keyword">AS</span> `alert_time`,<br>    MAP[<span class="hljs-string">&#x27;key2_cnt&#x27;</span>, <span class="hljs-built_in">CAST</span>(<span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> `key2`) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">DOUBLE</span>)] <span class="hljs-keyword">AS</span> `alert_metrics`<br><span class="hljs-keyword">FROM</span><br>    `dwd_log`<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>    `key_word`,<br>    DATE_FORMAT(`<span class="hljs-type">time</span>`, <span class="hljs-string">&#x27;yyyy-MM-dd HH:00:00&#x27;</span>)<br><span class="hljs-keyword">HAVING</span><br>    <span class="hljs-built_in">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> `key2`) <span class="hljs-operator">&gt;</span> <span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>虽然这样实现逻辑简单，但涉及重复消费，计算消耗大，且将规则硬编码在代码中，不够灵活。我们需要在达到临界点时之前找到更好的解决方法。</p>
+</li>
+</ul>
+<h1 id="阶段三：需求的爆发"><a href="#阶段三：需求的爆发" class="headerlink" title="阶段三：需求的爆发"></a>阶段三：需求的爆发</h1><ul>
+<li><p>我们看到当需求增长后，将面临以下问题：</p>
+<ul>
+<li>重复消费导致的计算资源浪费</li>
+<li>合并后代码过长导致无法维护</li>
+<li>硬编码导致规则没有灵活调整等</li>
+</ul>
+</li>
+<li><p>所以这时需要重构SQL代码，找到一种不用改变SQL又能支持规则CRUD的方法</p>
+<ul>
+<li>仔细思考一下现有的规则1和规则2，发现它们都是由相同的部分组成<ul>
+<li>过滤规则：对应<code>WHERE</code>条件</li>
+<li>分组规则：对应监控对象, 规则1中的<code>key2</code>字段以及规则2中的<code>key_word</code>字段</li>
+<li>窗口规则：对应监控周期，规则1中的<code>天</code>以及规则2的<code>小时</code></li>
+<li>聚合规则：对应聚合计算，规则1中的<code>COUNT</code>方法以及规则2中的<code>COUNT DISTINCT</code>方法</li>
+<li>阈值规则：对应<code>HAVING</code>条件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>这时我们可以抽象出一个规则模型，将规则放入另外一张(Paimon)表中维护</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> `dim_rule` (<br>    `rule_id` <span class="hljs-type">INT</span> COMMENT <span class="hljs-string">&#x27;规则id&#x27;</span>,<br>    `job_id` STRING COMMENT <span class="hljs-string">&#x27;处理规则作业id&#x27;</span>,<br>    `<span class="hljs-keyword">filter</span>` STRING COMMENT <span class="hljs-string">&#x27;过滤规则&#x27;</span>,<br>    `key` STRING COMMENT <span class="hljs-string">&#x27;分组规则&#x27;</span>,<br>    `<span class="hljs-keyword">window</span>` STRING COMMENT <span class="hljs-string">&#x27;窗口规则&#x27;</span>,<br>    `aggregate` <span class="hljs-type">ROW</span><span class="hljs-operator">&lt;</span>`name` STRING, `input` STRING, `<span class="hljs-keyword">method</span>` STRING<span class="hljs-operator">&gt;</span> COMMENT <span class="hljs-string">&#x27;聚合规则&#x27;</span>,<br>    `threshold` STRING COMMENT <span class="hljs-string">&#x27;阈值规则&#x27;</span>,<br>    <span class="hljs-keyword">PRIMARY</span> KEY(`rule_id`) <span class="hljs-keyword">NOT</span> ENFORCED<br>);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>规则示例为：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;rule_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;job_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;test&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;filter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;key_word==&#x27;stdout&#x27;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;key2&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;window&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;DAY&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;aggregate&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;key1_cnt&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;input&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;key1&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;COUNT&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;threshold_rule&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;key1_cnt&gt;1&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>有了规则的抽象之后，我们就可以拿日志数据去关联规则，然后根据规则去做具体的处理，当然这里就需要引入几个UDF来增强SQL的表达能力(这里我们不去讨论UDF<a target="_blank" rel="noopener" href="https://github.com/syntomic/qflink/tree/main/qflink-sql/qflink-sql-udf/src/main/java/cn/syntomic/qflink/sql/udf">具体实现</a>)</p>
+<ul>
+<li><code>dynamic_key</code>(UDF): 根据分组规则取日志中的相应值</li>
+<li><code>dynamic_window</code>(UDF)：根据窗口规则划分日志到相应窗口，类似之前的<code>DATE_FORMAT</code>函数</li>
+<li><code>dynamic_filter</code>(UDF)：根据过滤规则或阈值规则的表达式，判断表达式是否满足条件</li>
+<li><code>dynamic_agg</code>(UDAF)：根据聚合规则中计算聚合值，最终输出<code>指标名：值</code>的映射</li>
+</ul>
+</li>
+<li><p>重构后的代码如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>    `rule_id`,<br>    `window_start`,<br>    `key`,<br>    <span class="hljs-built_in">MAX</span>(`<span class="hljs-type">time</span>`) <span class="hljs-keyword">AS</span> `alert_time`,<br>    <span class="hljs-comment">-- 根据聚合规则进行计算</span><br>    dynamic_agg(`data`, `aggregate`) <span class="hljs-keyword">AS</span> `alert_metrics`<br><span class="hljs-keyword">FROM</span><br>    (<br>        <span class="hljs-keyword">SELECT</span><br>            `rule_id`,<br>            dynamic_window(`<span class="hljs-type">time</span>`, `<span class="hljs-keyword">window</span>`) <span class="hljs-keyword">AS</span> `window_start`,<br>            dynamic_key(`data`, `key`) <span class="hljs-keyword">AS</span> `key`,<br>            `aggregate`,<br>            `threshold`,<br>            `<span class="hljs-type">time</span>`,<br>            <span class="hljs-comment">-- 其中`data`为ROW(`key_word`, `key1`, `key2`)，由于规则中是不确定的，需要可以访问到日志中每一个字段</span><br>            `data`<br>        <span class="hljs-keyword">FROM</span><br>            `dwd_log` <span class="hljs-keyword">AS</span> `log`<br>        <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span><br>            <span class="hljs-comment">-- Paimon规则维表查询</span><br>            `dim_rule` <span class="hljs-keyword">FOR</span> <span class="hljs-built_in">SYSTEM_TIME</span> <span class="hljs-keyword">AS</span> <span class="hljs-keyword">OF</span> `log`.`proc_time` <span class="hljs-keyword">AS</span> `rule`<br>        <span class="hljs-comment">-- 只关联作业相关规则</span><br>        <span class="hljs-keyword">ON</span> `rule`.`job_id` <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;test&#x27;</span><br>        <span class="hljs-keyword">WHERE</span><br>            <span class="hljs-comment">-- 根据规则过滤日志</span><br>            dynamic_filter(`data`, `<span class="hljs-keyword">filter</span>`) <span class="hljs-keyword">AND</span> `rule_id` <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span><br>    ) `log_with_rule`<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>    <span class="hljs-comment">-- 根据规则分组</span><br>    `key`, `rule_id`, `window_start`, `threshold`, `aggregate`<br><span class="hljs-keyword">HAVING</span><br>    <span class="hljs-comment">-- 根据阈值规则判断聚合结果是否超过阈值</span><br>    dynamic_filter(dynamic_agg(`data`, `aggregate`), `threshold`);<br></code></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>注：在实现过程中发现无法重命名<code>ROW</code>类型中字段，所以在上述规则示例中实际需要指定默认名，即<code>EXPR$0, EXPR$1, EXPR$2</code>。大家也可以思考一下为什么不用<code>MAP</code>类型?</p>
+</blockquote>
+<ul>
+<li>经过这样的重构之后，SQL代码就固定了，所有操作只是针对规则的CRUD。但还会有什么其他问题吗？</li>
+</ul>
+<h1 id="阶段四：需求的挑战"><a href="#阶段四：需求的挑战" class="headerlink" title="阶段四：需求的挑战"></a>阶段四：需求的挑战</h1><ul>
+<li><p>上述方法采用维表关联，每来一条数据都需要对维表进行全表扫描，当日志和规则量级增加后，会带来相应的性能问题。虽然可以采用异步、缓存等<a target="_blank" rel="noopener" href="https://paimon.apache.org/docs/master/how-to/lookup-joins/">SQL HINTS</a>缓解，但其实不是根本的解决方案。</p>
+</li>
+<li><p>幸好Paimon提供了增量读的功能，我们可以将规则表全部读取到Flink中，并可以捕获规则表中的数据变更，这样就和数据源解耦了，不会带来额外的性能压力。这只需改变一行代码就可以实现:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>    ...<br><span class="hljs-keyword">FROM</span><br>    (<br>        <span class="hljs-keyword">SELECT</span><br>            ...<br>        <span class="hljs-keyword">FROM</span><br>            `dwd_log` <span class="hljs-keyword">AS</span> `log`<br>        <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span><br>            <span class="hljs-comment">-- 修改为常规的左连接</span><br>            `dim_rule` <span class="hljs-keyword">AS</span> `rule`<br>        <span class="hljs-keyword">ON</span> `rule`.`job_id` <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;test&#x27;</span><br>        ...<br>    ) `log_with_rule`<br>...<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>看起来去利用SQL进行复杂监控的目标达到了，但事实真的是这样吗？</p>
+</li>
+</ul>
+<h1 id="真相"><a href="#真相" class="headerlink" title="真相"></a>真相</h1><ul>
+<li><p>其实我们还会碰见一系列棘手的问题：</p>
+<ul>
+<li>报警控制：SQL的实现周期内报警会反复触发报警，如需控制报警次数，只能下游再进行处理</li>
+<li>窗口类型：SQL的实现只能在指定周期内实时累积，不能定时轮询(比如每天触发一次)</li>
+<li>状态控制：SQL的实现当规则修改时没法细粒度地控制之前累积状态，作业在长期运行后会不堪重负等</li>
+</ul>
+</li>
+<li><p>但实际工作中，我们大部分碰到的问题其实就是类似阶段一那样确定的规则，都可以利用SQL方便地进行解决。而从长远来看，上层的数据应用会变得更加简单，对于最终用户，所有的数据都可以使用SQL方式进行分析，这就是我理解的<code>SQL Is All Your Need</code>愿景。</p>
+</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>在本篇文章中看到了SQL解决复杂问题潜力，但也明白SQL解决问题的局限性，但这并不影响我们的愿景, 而且在随着AI的发展，可以憧憬仅用自然语言处理数据的时代。<em><strong>Keep up with the times</strong></em> ~</li>
+</ul>
+<blockquote>
+<p>本文所有SQL代码可参考：<a target="_blank" rel="noopener" href="https://github.com/syntomic/qflink/tree/main/qflink-sql/qflink-sql-sdk/src/test/resources/sqls/sql_is_all_your_need/flink_dynamic_sql">SQL IS ALL Your Need: Flink Dynamic SQL</a></p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Flink-SQL/" class="print-no-link">#Flink SQL</a>
+      
+        <a href="/tags/Flink/" class="print-no-link">#Flink</a>
+      
+        <a href="/tags/Paimon/" class="print-no-link">#Paimon</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SQL Is All Your Need: Flink Dynamic SQL</div>
+      <div>https://syntomic.github.io/2023/06/15/SQL-Is-All-Your-Need-Flink-Dynamic-SQL/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>syntomic</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/07/15/Flink%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/" title="Flink规则引擎">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Flink规则引擎</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/11/SQL-Is-All-Your-Need-Flink-SQL-UDF/" title="SQL Is All Your Need: Flink SQL UDF">
+                        <span class="hidden-mobile">SQL Is All Your Need: Flink SQL UDF</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"syntomic/comments","repo-id":"R_kgDOJ5guVA","category":"Announcements","category-id":"DIC_kwDOJ5guVM4CXxa0","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
