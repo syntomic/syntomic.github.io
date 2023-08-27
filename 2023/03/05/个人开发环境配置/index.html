@@ -16,15 +16,15 @@
   <meta name="author" content="syntomic">
   <meta name="keywords" content="">
   
-    <meta name="description" content="编程首先就是需要一个开发环境，本篇文章记录了个人认为Linux平台下搭建一个良好开发环境的相应配置。">
+    <meta name="description" content="工欲善其事必先利其器, 一个良好的开发环境可以大大提高编程效率。本篇文章将会分享安装相应工具来帮助我们提高效率~">
 <meta property="og:type" content="article">
 <meta property="og:title" content="个人开发环境配置">
 <meta property="og:url" content="https://syntomic.github.io/2023/03/05/%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="syntomic">
-<meta property="og:description" content="编程首先就是需要一个开发环境，本篇文章记录了个人认为Linux平台下搭建一个良好开发环境的相应配置。">
+<meta property="og:description" content="工欲善其事必先利其器, 一个良好的开发环境可以大大提高编程效率。本篇文章将会分享安装相应工具来帮助我们提高效率~">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-05T05:48:23.000Z">
-<meta property="article:modified_time" content="2023-07-09T08:45:19.222Z">
+<meta property="article:modified_time" content="2023-08-27T09:09:07.747Z">
 <meta property="article:author" content="syntomic">
 <meta property="article:tag" content="环境配置">
 <meta name="twitter:card" content="summary_large_image">
@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k 字
+          7.6k 字
         
       </span>
     
@@ -262,7 +262,7 @@
         
         
         
-          34 分钟
+          64 分钟
         
       </span>
     
@@ -312,97 +312,229 @@
             
               <div class="markdown-body">
                 
-                <p>编程首先就是需要一个开发环境，本篇文章记录了个人认为Linux平台下搭建一个良好开发环境的相应配置。</p>
+                <p>工欲善其事必先利其器, 一个良好的开发环境可以大大提高编程效率。本篇文章将会分享安装相应工具来帮助我们提高效率~</p>
 <span id="more"></span>
-<h1 id="Oh-My-ZSH"><a href="#Oh-My-ZSH" class="headerlink" title="Oh My ZSH"></a>Oh My ZSH</h1><ul>
-<li><p>安装zsh</p>
+<h1>单机环境</h1>
+<h2 id="WSL"><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/about">WSL</a></h2>
+<p>Linux系统提供了更友好方便的开发环境，如果你现在正在使用Windows系统，可以尝试使用Windows Subsystem Linux(WSL)开发。</p>
+<h3 id="安装">安装</h3>
+<ol>
+<li>打开PowerShell安装Ubuntu-22.04</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--help</span><br>wsl <span class="hljs-literal">--install</span> Ubuntu<span class="hljs-literal">-22</span>.<span class="hljs-number">04</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>如果你觉得PowerShell不好用，可以尝试安装<a target="_blank" rel="noopener" href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=zh-cn">Windows Terminal</a></p>
+</blockquote>
+<ol start="2">
+<li>
+<p>替换apt源:</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo <span class="hljs-built_in">mv</span> /etc/apt/sources.list /etc/apt/sources.list.bak<br>sudo vim /etc/apt/sources.list<br></code></pre></td></tr></table></figure>
 <ul>
-<li>有root权限时：<code>apt install zsh</code></li>
-<li>无root权限时<ul>
-<li>需要源码编译安装  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh">wget -O zsh.tar.xz https://sourceforge.net/projects/zsh/files/latest/download<br><span class="hljs-built_in">mkdir</span> zsh &amp;&amp; unxz zsh.tar.xz &amp;&amp; tar -xvf zsh.tar -C zsh --strip-components 1<br><span class="hljs-built_in">cd</span> zsh<br><br>./configure --prefix=<span class="hljs-variable">$HOME</span><br>make<br>make install<br></code></pre></td></tr></table></figure></li>
-<li>troubleshooting<ul>
-<li><code>configure: error: &quot;No terminal handling library was found on your system. This is probably a library called curses or ncurses. You may need to install a package called &#39;curses-devel&#39; or &#39;ncurses-devel&#39; on your system&quot;</code><ul>
-<li>同样下载源码安装<code>ncurses</code>  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sh">wget https://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.1.tar.gz<br>tar xvfz ncurses-6.1.tar.gz<br><span class="hljs-built_in">cd</span> ncurses-6.1<br>./configure --prefix=<span class="hljs-variable">$HOME</span> --with-shared<br>make<br>make install<br><span class="hljs-comment"># 安装zsh时需要找到相应动态库</span><br><span class="hljs-built_in">export</span> CPPFLAGS=<span class="hljs-string">&quot;-I<span class="hljs-variable">$HOME</span>/include&quot;</span> LDFLAGS=<span class="hljs-string">&quot;-L<span class="hljs-variable">$HOME</span>/lib&quot;</span><br></code></pre></td></tr></table></figure></li>
+<li>添加以下软件仓库</li>
 </ul>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span><br>deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse<br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse</span><br>deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse<br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse</span><br>deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse<br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse</span><br><span class="hljs-comment"># 在较新的操作系统版本的软件包的新版本</span><br>deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse<br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse</span><br><span class="hljs-comment"># 预发布软件源，不建议启用</span><br><span class="hljs-comment"># deb http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse</span><br><span class="hljs-comment"># deb-src http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse</span><br></code></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Free software</th>
+<th>Non-free software</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Supported</td>
+<td>Main</td>
+<td>Restricted</td>
+</tr>
+<tr>
+<td>Unsupported</td>
+<td>Universe</td>
+<td>Multiverse</td>
+</tr>
+</tbody>
+</table>
 </li>
-</ul>
+<li>
+<p>更新并安装基础软件</p>
 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>安装oh my zsh</p>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 更新软件列表</span><br>sudo apt-get update<br><span class="hljs-comment"># 更新软件包</span><br>sudo apt-get upgrade<br>sudo apt-get install build-essential<br></code></pre></td></tr></table></figure>
+<h3 id="Trouble-Shooting">Trouble Shooting</h3>
+<ol>
+<li>wsl默认安装在C盘中，当wsl中数据越来越多时，会导致C盘容量不足，这个时候我们可以将wsl迁移到其他磁盘中</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--list</span> <span class="hljs-literal">-v</span><br>wsl <span class="hljs-literal">--terminate</span> Ubuntu<span class="hljs-literal">-22</span>.<span class="hljs-number">04</span><br>wsl <span class="hljs-literal">--export</span> Ubuntu<span class="hljs-literal">-22</span>.<span class="hljs-number">04</span> <span class="hljs-string">&quot;D:\wsl_export\ubuntu-ex.tar&quot;</span><br>wsl <span class="hljs-literal">--unregister</span> Ubuntu<span class="hljs-literal">-22</span>.<span class="hljs-number">04</span><br>wsl <span class="hljs-literal">--import</span> Ubuntu<span class="hljs-literal">-22</span>.<span class="hljs-number">04</span> <span class="hljs-string">&quot;D:\wsl_import\ubuntu&quot;</span> <span class="hljs-string">&quot;D:\wsl_export\ubuntu-ex.tar&quot;</span><br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>wsl中出现<code>Failed to connect to raw.githubusercontent.com port 443: Connection refused</code></li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 重新配置DNS:</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;nameserver 8.8.8.8&quot;</span> | sudo <span class="hljs-built_in">tee</span> /etc/resolv.conf &gt; /dev/null<br></code></pre></td></tr></table></figure>
+<h2 id="Oh-My-Zsh"><a target="_blank" rel="noopener" href="https://ohmyz.sh/">Oh My Zsh</a></h2>
+<p>Linux默认的bash shell虽然在功能已经比较完善了，但如果你想更加个性化一点，可以尝试使用下Oh My Zsh~</p>
+<h3 id="安装zsh">安装zsh</h3>
+<ol>
+<li>安装zsh</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt install zsh<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>安装oh my zsh</li>
+</ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sh -c <span class="hljs-string">&quot;<span class="hljs-subst">$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>安装插件: 在~&#x2F;.zshrc文件中更新配置</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh">plugins=(<br>    git<br>    extract<br>    z<br>    zsh-autosuggestions<br>    zsh-syntax-highlighting<br>)<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>安装插件: 在<code>~/.zshrc</code>文件中更新配置 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh">plugins=(<br>    git<br>    <span class="hljs-comment"># 解压: x file</span><br>    extract<br>    <span class="hljs-comment"># 目录跳转：z dir</span><br>    z<br>    <span class="hljs-comment"># 自动补全</span><br>    zsh-autosuggestions<br>    <span class="hljs-comment"># 高亮命令</span><br>    zsh-syntax-highlighting<br>)<br></code></pre></td></tr></table></figure>
 <ul>
-<li>解压: <code>x file</code></li>
-<li>目录跳转：<code>z dir</code></li>
-<li>自动补全  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="hljs-variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-autosuggestions<br></code></pre></td></tr></table></figure></li>
-<li>高亮命令  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">`git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="hljs-variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting`<br></code></pre></td></tr></table></figure></li>
+<li>自动补全</li>
 </ul>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="hljs-variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-autosuggestions<br></code></pre></td></tr></table></figure>
+<ul>
+<li>高亮命令</li>
+</ul>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="hljs-variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting<br></code></pre></td></tr></table></figure>
 </li>
+</ol>
+<h3 id="Trouble-Shooting-2">Trouble Shooting</h3>
+<ol>
+<li>无root权限时安装<code>zsh</code>
+<ul>
+<li>源码编译安装</li>
 </ul>
-<h1 id="Software"><a href="#Software" class="headerlink" title="Software"></a>Software</h1><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><ul>
-<li><p>Miniconda3</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh">wget -O zsh.tar.xz https://sourceforge.net/projects/zsh/files/latest/download<br><span class="hljs-built_in">mkdir</span> zsh &amp;&amp; unxz zsh.tar.xz &amp;&amp; tar -xvf zsh.tar -C zsh --strip-components 1<br><span class="hljs-built_in">cd</span> zsh<br><br>./configure --prefix=<span class="hljs-variable">$HOME</span><br>make<br>make install<br></code></pre></td></tr></table></figure>
+<ul>
+<li>若出现依赖错误，依然可以源码安装相应依赖，比如<code>configure: error: &quot;No terminal handling library was found on your system. This is probably a library called curses or ncurses. You may need to install a package called 'curses-devel' or 'ncurses-devel' on your system&quot;</code></li>
+</ul>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sh">wget https://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.1.tar.gz<br>tar xvfz ncurses-6.1.tar.gz<br><span class="hljs-built_in">cd</span> ncurses-6.1<br>./configure --prefix=<span class="hljs-variable">$HOME</span> --with-shared<br>make<br>make install<br><span class="hljs-comment"># 安装zsh时需要找到相应动态库</span><br><span class="hljs-built_in">export</span> CPPFLAGS=<span class="hljs-string">&quot;-I<span class="hljs-variable">$HOME</span>/include&quot;</span> LDFLAGS=<span class="hljs-string">&quot;-L<span class="hljs-variable">$HOME</span>/lib&quot;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="Homebrew"><a target="_blank" rel="noopener" href="https://brew.sh/">Homebrew</a></h2>
+<p>Ubuntu原生的包管理软件<code>apt</code>不是特别好用，有很多最新的软件包都找不到，这个时候可以安装Homebrew获取最新软件包，尤其在MacOS平台上~</p>
+<h3 id="安装-2">安装</h3>
+<ol>
+<li>脚本自动安装</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">/bin/bash -c <span class="hljs-string">&quot;<span class="hljs-subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</span>&quot;</span><br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>配置镜像</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export HOMEBREW_API_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles/api&#x27;</span> &gt;&gt; ~/.zshrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export HOMEBREW_BREW_GIT_REMOTE=https://mirrors.aliyun.com/homebrew/brew.git&#x27;</span> &gt;&gt; ~/.zshrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export HOMEBREW_CORE_GIT_REMOTE=https://mirrors.aliyun.com/homebrew/homebrew-core.git&#x27;</span> &gt;&gt; ~/.zshrc<br><span class="hljs-built_in">source</span> ~/.zshrc<br><br>brew update<br></code></pre></td></tr></table></figure>
+<h3 id="Trouble-Shooting-3">Trouble Shooting</h3>
+<ol>
+<li>安装maven时会自动安装openjdk依赖</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">brew install --ignore-dependencies maven<br></code></pre></td></tr></table></figure>
+<h2 id="Python：Miniconda">Python：<a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a></h2>
+<p>Ubuntu系统默认安装了<code>Python3</code>，但实际情况下需要许多虚拟环境，这里我们可以利用<code>conda</code>进行统一管理~</p>
+<h3 id="安装-3">安装</h3>
+<ol>
+<li>脚本自动安装</li>
+</ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh<br>sh Miniconda3-latest-Linux-x86_64.sh<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>设置pip镜像源：~&#x2F;.pip&#x2F;pip.conf</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">[<span class="hljs-keyword">global</span>]<br><span class="hljs-keyword">index</span>-url = https://pypi.tuna.tsinghua.edu.cn/simple<br>[install]<br><span class="hljs-keyword">trusted</span>-host = https://pypi.tuna.tsinghua.edu.cn<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>虚拟环境管理</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">conda create --name tmp python=3.7 -y<br>conda remove -n tmp --all<br></code></pre></td></tr></table></figure></li>
+<ol start="2">
+<li>设置pip镜像源</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">pip config <span class="hljs-built_in">set</span> global.index-url https://mirrors.aliyun.com/pypi/simple<br>pip config <span class="hljs-built_in">set</span> install.trusted-host mirrors.aliyun.com<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>虚拟环境管理</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">conda create --name tmp python=3.11 -y<br>conda remove -n tmp --all<br></code></pre></td></tr></table></figure>
+<h2 id="Java"><a target="_blank" rel="noopener" href="https://openjdk.org/install/">Java</a></h2>
+<p>JDK有很多的实现，这里我们以OpenJDK为例安装，如果需要Oracle JDK的话，直接去<a target="_blank" rel="noopener" href="https://www.oracle.com/il-en/java/technologies/downloads/#java17">Oracle官网</a>下载相应压缩包，将其解压到相应目录并设置好环境变量即可~</p>
+<h3 id="安装-4">安装</h3>
+<ol>
+<li><code>apt</code>安装</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt install openjdk-17-jdk<br>sudo apt install maven<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>配置镜像: <code>~/.m2/settings.xml</code></li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>aliyunmaven<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>*<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>阿里云公共仓库<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">repository</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>spring<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>https://maven.aliyun.com/repository/spring<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">releases</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">enabled</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">enabled</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">releases</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">snapshots</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">enabled</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">enabled</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">snapshots</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">repository</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h2 id="VSCode"><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VSCode</a></h2>
+<p>VSCode繁荣的插件系统，可以让我们只需一个IDE就能完成全部工作，避免在不同工具之间切换的麻烦~</p>
+<h3 id="安装-5">安装</h3>
+<p>直接去<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">官网</a>下载相应软件包安装即可</p>
+<h3 id="插件">插件</h3>
+<ol>
+<li>
+<p><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack">远程开发</a></p>
+<ul>
+<li>配置本地ssh</li>
 </ul>
-<h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><ul>
-<li>JDK<ul>
-<li>下载二进制压缩文件并解压</li>
-<li>设置环境变量JAVA_HOME</li>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">ssh-keygen -t rsa -P <span class="hljs-string">&#x27;&#x27;</span> -f ~/.ssh/id_rsa<br><span class="hljs-built_in">cat</span> ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys<br><span class="hljs-built_in">chmod</span> 0600 ~/.ssh/authorized_keys<br></code></pre></td></tr></table></figure>
+<ul>
+<li>连接远程机器</li>
 </ul>
-</li>
-<li>MAVEN<ul>
-<li>安装<ul>
-<li>下载二进制压缩文件并解压</li>
-<li>设置环境MAVEN_HOME</li>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 可将本地公钥复制到远程主机的authorized_keys中，避免重复输入密码连接</span><br>ssh <span class="hljs-variable">$&#123;user&#125;</span>@<span class="hljs-variable">$&#123;ip&#125;</span> -A<br></code></pre></td></tr></table></figure>
+<ul>
+<li>配置默认shell</li>
 </ul>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;terminal.integrated.profiles.linux&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;zsh&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;ZSH_PATH&#125;&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;terminal.integrated.defaultProfile.linux&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;zsh&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;terminal.integrated.shell.linux&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;ZSH_PATH&#125;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;terminal.integrated.automationProfile.linux&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;ZSH_PATH&#125;&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 </li>
-<li>配置镜像: ~&#x2F;.m2&#x2F;settings.xml  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>aliyunmaven<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>*<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>阿里云公共仓库<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">repository</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>spring<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>https://maven.aliyun.com/repository/spring<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">releases</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">enabled</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">enabled</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">releases</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">snapshots</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">enabled</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">enabled</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">snapshots</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">repository</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack">Extension Pack for Java</a></p>
+<ul>
+<li>java配置</li>
 </ul>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;java.jdt.ls.java.home&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&#123;JAVA_LS_PATH&#125;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;java.configuration.runtimes&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;JavaSE-1.8&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;JAVA_8_PATH&#125;&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;JavaSE-11&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;JAVA_11_PATH&#125;&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;JavaSE-17&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;JAVA_17_PATH&#125;&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 </li>
-</ul>
-<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><h2 id="K8S"><a href="#K8S" class="headerlink" title="K8S"></a>K8S</h2><h1 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h1><h2 id="远程开发"><a href="#远程开发" class="headerlink" title="远程开发"></a>远程开发</h2><ul>
-<li><p>配置本地ssh</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">ssh-keygen -t rsa -P <span class="hljs-string">&#x27;&#x27;</span> -f ~/.ssh/id_rsa<br><span class="hljs-built_in">cat</span> ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys<br><span class="hljs-built_in">chmod</span> 0600 ~/.ssh/authorized_keys<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>将本地公钥复制到远程主机的authorized_keys中</p>
-</li>
-<li><p>配置默认shell</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;terminal.integrated.profiles.linux&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;zsh&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;ZSH_PATH&#125;&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;terminal.integrated.defaultProfile.linux&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;zsh&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;terminal.integrated.shell.linux&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;ZSH_PATH&#125;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;terminal.integrated.automationProfile.linux&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;ZSH_PATH&#125;&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><ul>
-<li>语言支持<ul>
-<li>Python<ul>
-<li>Python：v2022.2.1924087327版本支持python2.7</li>
-<li>autoDocstring</li>
-</ul>
-</li>
-<li>Java<ul>
-<li>Extension Pack for Java  <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;java.jdt.ls.java.home&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&#123;JAVA_LS_PATH&#125;&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;java.configuration.runtimes&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;JavaSE-1.8&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;JAVA_8_PATH&#125;&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;JavaSE-11&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;JAVA_11_PATH&#125;&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;JavaSE-17&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;JAVA_17_PATH&#125;&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>特性<ul>
+<li>
+<p>其他</p>
+<ul>
 <li>Better Comments</li>
 <li>Code Spell Checker</li>
 <li>Git Graph</li>
 <li>SonarLint</li>
 </ul>
 </li>
-</ul>
-<h2 id="运行配置"><a href="#运行配置" class="headerlink" title="运行配置"></a>运行配置</h2><ul>
-<li>launch.json<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-comment">// Use IntelliSense to learn about possible attributes.</span><br>    <span class="hljs-comment">// Hover to view descriptions of existing attributes.</span><br>    <span class="hljs-comment">// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387</span><br>    <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.2.0&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;configurations&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Python: Current File&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;python&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;request&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;launch&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;program&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;$&#123;file&#125;&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;console&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;integratedTerminal&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;justMyCode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><br>        <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure></li>
-</ul>
+</ol>
+<h1>容器环境</h1>
+<h2 id="Docker"><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/">Docker</a></h2>
+<p>从上面单机的配置可以看出来，开发环境其实时很耗时耗力的，幸好docker为我们封装好了现成的容器环境，可以开箱即用~</p>
+<h3 id="安装-6">安装</h3>
+<ol>
+<li>脚本自动安装</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">curl -fsSL get.docker.com -o get-docker.sh<br>sudo sh get-docker.sh --mirror Aliyun<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>建立docker用户组</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo groupadd docker<br>sudo usermod -aG docker <span class="hljs-variable">$USER</span><br><span class="hljs-comment"># 重新登陆生效</span><br><span class="hljs-built_in">logout</span><br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>设置镜像加速: 在文件<code>/etc/docker/daemon.json</code>添加</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">&#123;<br>  <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<br>    <span class="hljs-string">&quot;https://hub-mirror.c.163.com&quot;</span>,<br>    <span class="hljs-string">&quot;https://mirror.baidubce.com&quot;</span><br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://help.aliyun.com/zh/acr/user-guide/accelerate-the-pulls-of-docker-official-images">阿里云镜像地址获取</a></p>
+</blockquote>
+<ol start="4">
+<li>启动docker</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 自启动</span><br><span class="hljs-comment"># sudo systemctl enable docker</span><br>sudo systemctl start docker<br>docker run --<span class="hljs-built_in">rm</span> hello-world<br></code></pre></td></tr></table></figure>
+<ol start="5">
+<li>安装docker-compose</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">curl -SL https://github.com/docker/compose/releases/download/v2.20.3/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose<br>sudo <span class="hljs-built_in">chmod</span> +x /usr/local/bin/docker-compose<br>docker-compose version<br></code></pre></td></tr></table></figure>
+<h2 id="k8s"><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/tutorials/hello-minikube/">k8s</a></h2>
+<h3 id="安装-7">安装</h3>
+<ol>
+<li>脚本自动安装</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64<br>sudo install minikube-linux-amd64 /usr/local/bin/minikube<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>启动集群</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 使用镜像加速</span><br>minikube start --image-mirror-country=cn --kubernetes-version=1.23.0<br><span class="hljs-comment"># 安装kubectl</span><br>minikube kubectl -- get po -A<br><span class="hljs-built_in">alias</span> kubectl=<span class="hljs-string">&quot;minikube kubectl --&quot;</span><br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>部署应用</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl create deployment hello-minikube --image=kicbase/echo-server:1.0<br>kubectl expose deployment hello-minikube --<span class="hljs-built_in">type</span>=NodePort --port=8080<br>minikube service hello-minikube<br></code></pre></td></tr></table></figure>
+<ol start="4">
+<li>集群管理</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl delete service hello-minikube<br>kubectl delete deployment hello-minikube<br>minikube stop<br></code></pre></td></tr></table></figure>
+<h1>总结</h1>
+<p>因为基本上都是国外的软件，直接下载的话速度会很慢甚至访问不了，这就要求我们学会配置镜像，或者学会科学上网。。</p>
 
                 
               </div>
@@ -421,7 +553,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%85%B6%E4%BB%96/" class="category-chain-item">其他</a>
+  <a href="/categories/%E6%80%BB%E7%BB%93/" class="category-chain-item">总结</a>
   
   
 
