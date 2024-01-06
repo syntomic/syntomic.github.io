@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/pages/icon.ico">
+  <link rel="icon" href="/images/pages/icon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -16,23 +16,22 @@
   <meta name="author" content="syntomic">
   <meta name="keywords" content="">
   
-    <meta name="description" content="每个编程语言都有其适用的范围，当人们需要在结合不同生态去完成一些功能时，就会遇到不同语言通信的问题，本篇文章我们结合一个具体示例，展示如何通过FFI语言交互接口实现在Java中调用Python。">
+    <meta name="description" content="每个编程语言都有其适用的范围，当人们需要结合不同的生态去完成一些功能时，就会遇到不同语言通信的问题，本篇文章我们结合一个具体示例，展示如何通过FFI语言交互接口实现在Java中调用Python。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java调用Python">
 <meta property="og:url" content="https://syntomic.github.io/2023/02/25/Java%E8%B0%83%E7%94%A8Python/index.html">
 <meta property="og:site_name" content="syntomic">
-<meta property="og:description" content="每个编程语言都有其适用的范围，当人们需要在结合不同生态去完成一些功能时，就会遇到不同语言通信的问题，本篇文章我们结合一个具体示例，展示如何通过FFI语言交互接口实现在Java中调用Python。">
+<meta property="og:description" content="每个编程语言都有其适用的范围，当人们需要结合不同的生态去完成一些功能时，就会遇到不同语言通信的问题，本篇文章我们结合一个具体示例，展示如何通过FFI语言交互接口实现在Java中调用Python。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://syntomic.github.io/2023/02/25/Java%E8%B0%83%E7%94%A8Python/FFI.png">
+<meta property="og:image" content="https://syntomic.github.io/images/articles/ffi.png">
 <meta property="article:published_time" content="2023-02-25T01:34:21.000Z">
-<meta property="article:modified_time" content="2023-07-09T09:04:03.831Z">
+<meta property="article:modified_time" content="2024-01-06T13:41:10.435Z">
 <meta property="article:author" content="syntomic">
 <meta property="article:tag" content="FFI">
+<meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://syntomic.github.io/2023/02/25/Java%E8%B0%83%E7%94%A8Python/FFI.png">
+<meta name="twitter:image" content="https://syntomic.github.io/images/articles/ffi.png">
   
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
   <title>Java调用Python - syntomic</title>
@@ -73,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"syntomic.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"X7uJH087OVm5P8ldgVc4at96-gzGzoHsz","app_key":"q25XgaiWkhJS1tgOLC0DWCVL","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"syntomic.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"tyYLzPKD7m92XfM9u67vOMWo-MdYXbMMI","app_key":"uMqs8pWO2jeOMY1JCH4ocYv2","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -146,7 +145,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -158,7 +157,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -170,7 +169,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -182,7 +181,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -194,7 +193,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -253,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          957 字
         
       </span>
     
@@ -264,7 +263,7 @@
         
         
         
-          27 分钟
+          8 分钟
         
       </span>
     
@@ -272,9 +271,9 @@
     
     
       
-        <span id="busuanzi_container_page_pv" style="display: none">
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> 次
+          <span id="leancloud-page-views"></span> 次
         </span>
         
       
@@ -314,44 +313,52 @@
             
               <div class="markdown-body">
                 
-                <p>每个编程语言都有其适用的范围，当人们需要在结合不同生态去完成一些功能时，就会遇到不同语言通信的问题，本篇文章我们结合一个具体示例，展示如何通过FFI语言交互接口实现在Java中调用Python。</p>
+                <p>每个编程语言都有其适用的范围，当人们需要结合不同的生态去完成一些功能时，就会遇到不同语言通信的问题，本篇文章我们结合一个具体示例，展示如何通过FFI语言交互接口实现在Java中调用Python。</p>
 <span id="more"></span>
-<h1 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h1><ul>
-<li>主要有下面两种原因：<ul>
+<h1>Why</h1>
+<ul>
+<li>主要有下面两种原因：
+<ul>
 <li>使用方式：例如采用Java开发的平台希望给用户提供易用的Python接口</li>
 <li>生态集成：例如将Java中的分布式能力和Python的AI生态相结合</li>
 </ul>
 </li>
 </ul>
-<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1><ul>
-<li><p>现如今有如下的解决方案：</p>
+<h1>How</h1>
 <ul>
-<li>IPC方案: 比如<a target="_blank" rel="noopener" href="https://www.py4j.org/">Py4J</a><ul>
+<li>现如今有如下的解决方案：
+<ul>
+<li>IPC方案: 比如<a target="_blank" rel="noopener" href="https://www.py4j.org/">Py4J</a>
+<ul>
 <li>问题：因为涉及到进程间通信以及序列化，所以会有性能问题</li>
 </ul>
 </li>
-<li>Python运行在JVM的方案：比如<a target="_blank" rel="noopener" href="https://www.jython.org/">Jython</a><ul>
+<li>Python运行在JVM的方案：比如<a target="_blank" rel="noopener" href="https://www.jython.org/">Jython</a>
+<ul>
 <li>问题：因为CPython现在是主流，所以会有兼容性问题</li>
 </ul>
 </li>
 <li>FFI(Foreign Function Interface): 比如<a target="_blank" rel="noopener" href="https://github.com/alibaba/pemja">Pemja</a></li>
 </ul>
-  <img src="/2023/02/25/Java%E8%B0%83%E7%94%A8Python/FFI.png" srcset="/img/loading.gif" lazyload class="" title="FFI方案">
-
-</li>
-<li><p>本篇文章我们将给出一个示例说明如何使用FFI。</p>
 </li>
 </ul>
-<h1 id="Prepare"><a href="#Prepare" class="headerlink" title="Prepare"></a>Prepare</h1><ul>
-<li><p>首先需要安装以下环境，如遇到安装问题可以和ChatGPT聊一下~</p>
+<p><img src="/images/articles/ffi.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <ul>
-<li>编程语言<ul>
+<li>本篇文章我们将给出一个示例说明如何使用FFI。</li>
+</ul>
+<h1>Prepare</h1>
+<ul>
+<li>首先需要安装以下环境，如遇到安装问题可以和ChatGPT聊一下~
+<ul>
+<li>编程语言
+<ul>
 <li>Java: 1.8</li>
 <li>Python: 3.9</li>
 <li>C：c99</li>
 </ul>
 </li>
-<li>编译与链接<ul>
+<li>编译与链接
+<ul>
 <li>gcc：动态链接</li>
 </ul>
 </li>
@@ -361,59 +368,68 @@
 <blockquote>
 <p>由于笔者开发环境采用MacOS + x86平台，所以以下教程只对此平台有效，后续再补上其他环境的相应命令</p>
 </blockquote>
-<h1 id="Learn-By-Doing"><a href="#Learn-By-Doing" class="headerlink" title="Learn By Doing"></a>Learn By Doing</h1><p><em><strong>目标：Java传入日期参数, 由Python返回星期几</strong></em></p>
+<h1>Learn By Doing</h1>
+<p><strong><em>目标：Java传入日期参数, 由Python返回星期几</em></strong></p>
 <ol>
-<li><p>编写主体Java代码</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.syntomic.ffi;<br><br><span class="hljs-comment">/** Foreign function interface demo */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FFIDemo</span> &#123;<br><br>    <span class="hljs-keyword">static</span> &#123;<br>        System.load(System.getenv(<span class="hljs-string">&quot;LIBPYTHON&quot;</span>));<br>        System.load(String.format(<span class="hljs-string">&quot;%s/FFIDemo.dylib&quot;</span>, System.getProperty(<span class="hljs-string">&quot;user.dir&quot;</span>)));<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FFIDemo</span>().dayOfWeek(<span class="hljs-string">&quot;1994-05-05&quot;</span>));<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 本地方法判断日期是星期几</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> date 日期</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">native</span> <span class="hljs-type">int</span> <span class="hljs-title function_">dayOfWeek</span><span class="hljs-params">(String date)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<li>编写主体Java代码</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.syntomic.ffi;<br><br><span class="hljs-comment">/** Foreign function interface demo */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FFIDemo</span> &#123;<br><br>    <span class="hljs-keyword">static</span> &#123;<br>        System.load(System.getenv(<span class="hljs-string">&quot;LIBPYTHON&quot;</span>));<br>        System.load(String.format(<span class="hljs-string">&quot;%s/FFIDemo.dylib&quot;</span>, System.getProperty(<span class="hljs-string">&quot;user.dir&quot;</span>)));<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FFIDemo</span>().dayOfWeek(<span class="hljs-string">&quot;1994-05-05&quot;</span>));<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 本地方法判断日期是星期几</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> date 日期</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">native</span> <span class="hljs-type">int</span> <span class="hljs-title function_">dayOfWeek</span><span class="hljs-params">(String date)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
-<li>可以看出我们需要首先导入两个共享库<ul>
+<li>可以看出我们需要首先导入两个共享库
+<ul>
 <li>运行Python所需的libpython库: 可以利用<a target="_blank" rel="noopener" href="https://pypi.org/project/find-libpython/">find-libpython</a>得出</li>
 <li>本地方法实现后的动态FFIDemo库：之后会介绍如何编译生成</li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p>生成Header文件</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">javac -h src/main/c/cn/syntomic/ffi/include src/main/java/cn/syntomic/ffi/FFIDemo.java<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>生成Header文件</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">javac -h src/main/c/cn/syntomic/ffi/include src/main/java/cn/syntomic/ffi/FFIDemo.java<br></code></pre></td></tr></table></figure>
 <ul>
-<li>可见我们需要实现一个C方法  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">JNIEXPORT jint JNICALL <span class="hljs-title function_">Java_cn_syntomic_ffi_FFIDemo_dayOfWeek</span><br><span class="hljs-params">(JNIEnv *, jobject, jstring)</span>;<br></code></pre></td></tr></table></figure>
+<li>观察生成的文件会发现我们需要实现一个C方法：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">JNIEXPORT jint JNICALL <span class="hljs-title function_">Java_cn_syntomic_ffi_FFIDemo_dayOfWeek</span><br><span class="hljs-params">(JNIEnv *, jobject, jstring)</span>;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>方法名: 由Java包名+类名+方法名组成</li>
-<li>方法参数<ul>
+<li>方法参数
+<ul>
 <li><code>JNIEnv</code>: 通过这个指针可以从运行的JVM中访问所需的类、对象、字段和方法</li>
 <li><code>jobject</code>: 方法所属于的Java对象</li>
 <li><code>jstring</code>: C JNI类型，详细对应可见<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/specs/jni/types.html">JNI Types</a></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-</li>
-<li><p>Python模块实现: 直接调用Python函数实现</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">day_of_week</span>(<span class="hljs-params">date</span>):<br>    <span class="hljs-keyword">return</span> datetime.strptime(date, <span class="hljs-string">&quot;%Y-%d-%m&quot;</span>).weekday() + <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure></li>
+<ol start="3">
+<li>Python模块实现: 直接调用Python函数实现</li>
 </ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">day_of_week</span>(<span class="hljs-params">date</span>):<br>    <span class="hljs-keyword">return</span> datetime.strptime(date, <span class="hljs-string">&quot;%Y-%d-%m&quot;</span>).weekday() + <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
 <hr>
-<p>如果要直接去计算星期几，可以利用数论中Zeller公式</p>
-<blockquote>
-<p>w&#x3D;y+[y&#x2F;4]+[c&#x2F;4]-2c+[26(m+1)&#x2F;10]+d-1</p>
-</blockquote>
-<p>所以<code>1994-05-05</code>这个日期的就是星期4&#x3D;(94+[94&#x2F;4]+[19&#x2F;4]-2*19+[26 *(5+1)&#x2F;10 ]+5-1) % 7</p>
+<p><strong>一点数学</strong>：如果要直接去计算星期几，可以利用数论中Zeller公式</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>w</mi><mo>=</mo><mi>y</mi><mo>+</mo><mo stretchy="false">[</mo><mi>y</mi><mi mathvariant="normal">/</mi><mn>4</mn><mo stretchy="false">]</mo><mo>+</mo><mo stretchy="false">[</mo><mi>c</mi><mi mathvariant="normal">/</mi><mn>4</mn><mo stretchy="false">]</mo><mo>−</mo><mn>2</mn><mi>c</mi><mo>+</mo><mo stretchy="false">[</mo><mn>26</mn><mo stretchy="false">(</mo><mi>m</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mn>10</mn><mo stretchy="false">]</mo><mo>+</mo><mi>d</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">w=y+[y/4]+[c/4]-2c+[26(m+1)/10]+d-1 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord">/4</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">c</span><span class="mord">/4</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">26</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord">/10</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></p>
+<p>所以<code>1994-05-05</code>这个日期的就是星期四：</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>4</mn><mo>=</mo><mo stretchy="false">(</mo><mn>94</mn><mo>+</mo><mo stretchy="false">[</mo><mn>94</mn><mi mathvariant="normal">/</mi><mn>4</mn><mo stretchy="false">]</mo><mo>+</mo><mo stretchy="false">[</mo><mn>19</mn><mi mathvariant="normal">/</mi><mn>4</mn><mo stretchy="false">]</mo><mo>−</mo><mn>2</mn><mo>∗</mo><mn>19</mn><mo>+</mo><mo stretchy="false">[</mo><mn>26</mn><mo>∗</mo><mo stretchy="false">(</mo><mn>5</mn><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mn>10</mn><mo stretchy="false">]</mo><mo>+</mo><mn>5</mn><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">4 = (94+[94/4]+[19/4]-2 * 19+[26 * (5+1) / 10 ]+5-1) % 7 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">94</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">94/4</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">19/4</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">19</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">26</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord">/10</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span></p>
 <hr>
 <ol start="4">
-<li><p>将Python嵌入到C中</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c">JNIEXPORT jint JNICALL <span class="hljs-title function_">Java_cn_syntomic_ffi_FFIDemo_dayOfWeek</span><br>  <span class="hljs-params">(JNIEnv* env, jobject thisObject, jstring date)</span> &#123;<br>    <span class="hljs-type">int</span> weekOfDay;<br><br>    <span class="hljs-comment">// 初始化python解释器</span><br>    Py_Initialize();<br><br>    <span class="hljs-comment">// 导入实现Python函数</span><br>    <span class="hljs-type">const</span> <span class="hljs-type">char</span>* pName = <span class="hljs-string">&quot;day_of_week&quot;</span>;<br>    PyRun_SimpleString(<span class="hljs-string">&quot;import sys&quot;</span>);<br>    PyRun_SimpleString(<span class="hljs-string">&quot;sys.path.append(&#x27;./src/main/python/cn/syntomic/ffi&#x27;)&quot;</span>);<br>    PyObject* pModule = PyImport_Import(PyUnicode_FromString(pName));<br>    PyObject* pFunc = PyObject_GetAttrString(pModule, pName);<br><br>    <span class="hljs-comment">// java类型转化为python参数</span><br>    PyObject* pArgs = PyTuple_New(<span class="hljs-number">1</span>);<br>    PyTuple_SetItem(pArgs, <span class="hljs-number">0</span>, PyUnicode_FromString((*env)-&gt;GetStringUTFChars(env, date, <span class="hljs-literal">NULL</span>)));<br><br>    <span class="hljs-comment">// 调用python函数</span><br>    PyObject* pValue = PyObject_CallObject(pFunc, pArgs);<br>    weekOfDay = PyLong_AsLong(pValue);<br><br>    <span class="hljs-comment">// 关闭python解释器</span><br>    <span class="hljs-keyword">if</span> (Py_FinalizeEx() &lt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">120</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> weekOfDay;<br>  &#125;<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>编译与运行</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> JAVA_HOME=<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span><br><span class="hljs-built_in">export</span> PYTHONHOME=<span class="hljs-variable">$&#123;PYTHONHOME&#125;</span><br><span class="hljs-built_in">export</span> LIBPYTHON=<span class="hljs-variable">$&#123;LIBPYTHON&#125;</span><br><br><span class="hljs-comment"># 编译</span><br>gcc -c -fPIC -I<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/include -I<span class="hljs-variable">$&#123;JAVA_HOME&#125;</span>/include/darwin -I<span class="hljs-variable">$&#123;PYTHONHOME&#125;</span>/include/python3.9 -I<span class="hljs-variable">$&#123;PYTHONHOME&#125;</span>/include src/main/c/cn/syntomic/ffi/cn_syntomic_ffi_FFIDemo.c -o FFIDemo.o<br><span class="hljs-comment"># 生成动态链接库</span><br>gcc -dynamiclib -L<span class="hljs-variable">$&#123;PYTHONHOME&#125;</span>/lib -lpython3.9 -ldl -o FFIDemo.dylib FFIDemo.o<br><br>javac -d target/classes/cn/syntomic/ffi src/main/java/cn/syntomic/ffi/FFIDemo.java<br>java -<span class="hljs-built_in">cp</span> target/classes cn.syntomic.ffi.FFIDemo<br></code></pre></td></tr></table></figure></li>
+<li>将Python嵌入到C中</li>
 </ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c">JNIEXPORT jint JNICALL <span class="hljs-title function_">Java_cn_syntomic_ffi_FFIDemo_dayOfWeek</span><br>  <span class="hljs-params">(JNIEnv* env, jobject thisObject, jstring date)</span> &#123;<br>    <span class="hljs-type">int</span> weekOfDay;<br><br>    <span class="hljs-comment">// 初始化python解释器</span><br>    Py_Initialize();<br><br>    <span class="hljs-comment">// 导入实现Python函数</span><br>    <span class="hljs-type">const</span> <span class="hljs-type">char</span>* pName = <span class="hljs-string">&quot;day_of_week&quot;</span>;<br>    PyRun_SimpleString(<span class="hljs-string">&quot;import sys&quot;</span>);<br>    PyRun_SimpleString(<span class="hljs-string">&quot;sys.path.append(&#x27;./src/main/python/cn/syntomic/ffi&#x27;)&quot;</span>);<br>    PyObject* pModule = PyImport_Import(PyUnicode_FromString(pName));<br>    PyObject* pFunc = PyObject_GetAttrString(pModule, pName);<br><br>    <span class="hljs-comment">// java类型转化为python参数</span><br>    PyObject* pArgs = PyTuple_New(<span class="hljs-number">1</span>);<br>    PyTuple_SetItem(pArgs, <span class="hljs-number">0</span>, PyUnicode_FromString((*env)-&gt;GetStringUTFChars(env, date, <span class="hljs-literal">NULL</span>)));<br><br>    <span class="hljs-comment">// 调用python函数</span><br>    PyObject* pValue = PyObject_CallObject(pFunc, pArgs);<br>    weekOfDay = PyLong_AsLong(pValue);<br><br>    <span class="hljs-comment">// 关闭python解释器</span><br>    <span class="hljs-keyword">if</span> (Py_FinalizeEx() &lt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-built_in">exit</span>(<span class="hljs-number">120</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> weekOfDay;<br>  &#125;<br></code></pre></td></tr></table></figure>
+<ol start="5">
+<li>编译与运行</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">export JAVA_HOME=$&#123;JAVA_HOME&#125;<br>export PYTHONHOME=$&#123;PYTHONHOME&#125;<br>export LIBPYTHON=$&#123;LIBPYTHON&#125;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">编译</span><br>gcc -c -fPIC -I$&#123;JAVA_HOME&#125;/include -I$&#123;JAVA_HOME&#125;/include/darwin -I$&#123;PYTHONHOME&#125;/include/python3.9 -I$&#123;PYTHONHOME&#125;/include src/main/c/cn/syntomic/ffi/cn_syntomic_ffi_FFIDemo.c -o FFIDemo.o<br><span class="hljs-meta prompt_"># </span><span class="language-bash">生成动态链接库</span><br>gcc -dynamiclib -L$&#123;PYTHONHOME&#125;/lib -lpython3.9 -ldl -o FFIDemo.dylib FFIDemo.o<br><br>javac -d target/classes/cn/syntomic/ffi src/main/java/cn/syntomic/ffi/FFIDemo.java<br>java -cp target/classes cn.syntomic.ffi.FFIDemo<br></code></pre></td></tr></table></figure>
 <ul>
-<li>最终就会输出<blockquote>
+<li>最终就会输出</li>
+</ul>
+<blockquote>
 <p>4</p>
 </blockquote>
-</li>
-</ul>
-<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>本篇文章我们以一个示例展示如何使用FFI，详细代码参考<a target="_blank" rel="noopener" href="https://github.com/syntomic/ffi_demo">ffi_demo</a>, 深入研究的话可以参考<a target="_blank" rel="noopener" href="https://github.com/alibaba/pemja">Pemja</a></p>
-<h1 id="Refer"><a href="#Refer" class="headerlink" title="Refer"></a>Refer</h1><ol>
+<h1>Summary</h1>
+<p>本篇文章我们以一个示例展示如何使用FFI，详细代码参考<a target="_blank" rel="noopener" href="https://github.com/syntomic/ffi_demo">ffi_demo</a>, 深入研究的话可以参考<a target="_blank" rel="noopener" href="https://github.com/alibaba/pemja">Pemja</a></p>
+<h1>Refer</h1>
+<ol>
 <li><a target="_blank" rel="noopener" href="https://www.baeldung.com/jni">Guide to JNI</a></li>
 <li><a target="_blank" rel="noopener" href="https://docs.python.org/3/extending/embedding.html">Embedding Python in Another Application</a></li>
 <li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/902591">基于 FFI 的 PyFlink 下一代 Python 运行时介绍</a></li>
@@ -436,7 +452,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE/" class="category-chain-item">数据</a>
   
   
 
@@ -452,6 +468,8 @@
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/FFI/" class="print-no-link">#FFI</a>
+      
+        <a href="/tags/%E6%95%99%E7%A8%8B/" class="print-no-link">#教程</a>
       
     </div>
   
@@ -528,40 +546,28 @@
   
     <article id="comments" lazyload>
       
-    <div id="giscus" class="giscus"></div>
-    <script type="text/javascript">
-      Fluid.utils.loadComments('#giscus', function() {
-        var options = {"repo":"syntomic/comments","repo-id":"R_kgDOJ5guVA","category":"Announcements","category-id":"DIC_kwDOJ5guVM4CXxa0","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
-        var attributes = {};
-        for (let option in options) {
-          if (!option.startsWith('theme-')) {
-            var key = option.startsWith('data-') ? option : 'data-' + option;
-            attributes[key] = options[option];
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline-eight-liart.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
           }
-        }
-        var light = 'light';
-        var dark = 'dark';
-        window.GiscusThemeLight = light;
-        window.GiscusThemeDark = dark;
-        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
-        for (let attribute in attributes) {
-          var value = attributes[attribute];
-          if (value === undefined || value === null || value === '') {
-            delete attributes[attribute];
-          }
-        }
-        var s = document.createElement('script');
-        s.setAttribute('src', 'https://giscus.app/client.js');
-        s.setAttribute('crossorigin', 'anonymous');
-        for (let attribute in attributes) {
-          s.setAttribute(attribute, attributes[attribute]);
-        }
-        var ss = document.getElementsByTagName('script');
-        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
-        e.parentNode.insertBefore(s, e.nextSibling);
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
       });
-    </script>
-    <noscript>Please enable JavaScript to view the comments</noscript>
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
 
 
     </article>
@@ -670,20 +676,21 @@
 
   
     
-      <span id="busuanzi_container_site_pv" style="display: none">
+      <span id="leancloud-site-pv-container" style="display: none">
         总访问量 
-        <span id="busuanzi_value_site_pv"></span>
+        <span id="leancloud-site-pv"></span>
          次
       </span>
     
     
-      <span id="busuanzi_container_site_uv" style="display: none">
+      <span id="leancloud-site-uv-container" style="display: none">
         总访客数 
-        <span id="busuanzi_value_site_uv"></span>
+        <span id="leancloud-site-uv"></span>
          人
       </span>
     
     
+
   
 </div>
 
@@ -835,8 +842,6 @@
   <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

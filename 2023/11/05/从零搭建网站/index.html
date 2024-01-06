@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/pages/icon.ico">
+  <link rel="icon" href="/images/pages/icon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -16,26 +16,26 @@
   <meta name="author" content="syntomic">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本篇文章介绍从零搭建一个属于自己的网站。">
+    <meta name="description" content="本文介绍利用华为云产品，搭建一个属于自己的网站~ 背景知识  网络基础知识介绍：从输入 URL 到页面加载完成的过程中都发生了什么事情。 免费简单配置搭建网站：GitHub Pages + Hexo搭建个人博客网站。  快速部署 购买服务器 现在云服务器厂商大多产品都可以免费试用，对新手上手很友好，同时也会有像双11等大促活动，例如笔者就在双11中用170块就入手了一台2核&#x2F;4G&#x2F;5Mbps的云服">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零搭建网站(草稿)">
+<meta property="og:title" content="从零搭建网站">
 <meta property="og:url" content="https://syntomic.github.io/2023/11/05/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99/index.html">
 <meta property="og:site_name" content="syntomic">
-<meta property="og:description" content="本篇文章介绍从零搭建一个属于自己的网站。">
+<meta property="og:description" content="本文介绍利用华为云产品，搭建一个属于自己的网站~ 背景知识  网络基础知识介绍：从输入 URL 到页面加载完成的过程中都发生了什么事情。 免费简单配置搭建网站：GitHub Pages + Hexo搭建个人博客网站。  快速部署 购买服务器 现在云服务器厂商大多产品都可以免费试用，对新手上手很友好，同时也会有像双11等大促活动，例如笔者就在双11中用170块就入手了一台2核&#x2F;4G&#x2F;5Mbps的云服">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ask.qcloudimg.com/http-save/6837186/mloginfful.jpeg">
+<meta property="og:image" content="https://syntomic.github.io/images/articles/404.png">
+<meta property="og:image" content="https://syntomic.github.io/images//articles/ssl.png">
+<meta property="og:image" content="https://syntomic.github.io/images/articles/ssl_pipeline.png">
 <meta property="article:published_time" content="2023-11-05T04:59:17.000Z">
-<meta property="article:modified_time" content="2023-11-26T13:47:24.458Z">
+<meta property="article:modified_time" content="2024-01-06T14:34:55.117Z">
 <meta property="article:author" content="syntomic">
-<meta property="article:tag" content="应用">
+<meta property="article:tag" content="总结">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ask.qcloudimg.com/http-save/6837186/mloginfful.jpeg">
+<meta name="twitter:image" content="https://syntomic.github.io/images/articles/404.png">
   
   
-    <meta name="referrer" content="no-referrer-when-downgrade">
   
-  
-  <title>从零搭建网站(草稿) - syntomic</title>
+  <title>从零搭建网站 - syntomic</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"syntomic.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"X7uJH087OVm5P8ldgVc4at96-gzGzoHsz","app_key":"q25XgaiWkhJS1tgOLC0DWCVL","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"syntomic.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"tyYLzPKD7m92XfM9u67vOMWo-MdYXbMMI","app_key":"uMqs8pWO2jeOMY1JCH4ocYv2","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -146,7 +146,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -158,7 +158,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -170,7 +170,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/categories/" target="_self">
                 <i class="iconfont icon-category-fill"></i>
                 <span>分类</span>
               </a>
@@ -182,7 +182,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -194,7 +194,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -230,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="从零搭建网站(草稿)"></span>
+            <span id="subtitle" data-typed-text="从零搭建网站"></span>
           
         </div>
 
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          592 字
+          774 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          5 分钟
+          7 分钟
         
       </span>
     
@@ -272,9 +272,9 @@
     
     
       
-        <span id="busuanzi_container_page_pv" style="display: none">
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> 次
+          <span id="leancloud-page-views"></span> 次
         </span>
         
       
@@ -309,56 +309,38 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">从零搭建网站(草稿)</h1>
+            <h1 id="seo-header">从零搭建网站</h1>
             
             
               <div class="markdown-body">
                 
-                <p>本篇文章介绍从零搭建一个属于自己的网站。</p>
-<span id="more"></span>
-<h1>整体流程</h1>
-<ul>
-<li>
-<p>注册域名</p>
-</li>
-<li>
-<p>搭建服务器</p>
-</li>
-<li>
-<p>部署网站</p>
-</li>
-<li>
-<p>网站备案</p>
-</li>
-<li>
-<p>网站解析</p>
-</li>
-<li>
-<p>网站健康检查</p>
-</li>
-</ul>
-<h1>基础知识</h1>
-<h2 id="HTTPs原理">HTTPs原理</h2>
-<ul>
-<li>证书验证阶段
-<ul>
-<li>浏览器发起 HTTPS 请求</li>
-<li>服务端返回 HTTPS 证书</li>
-<li>客户端验证证书是否合法，如果不合法则提示告警</li>
-</ul>
-</li>
-<li>数据传输阶段
-<ul>
-<li>当证书验证合法后，在本地生成随机数</li>
-<li>通过公钥加密随机数，并把加密后的随机数传输到服务端</li>
-<li>服务端通过私钥对随机数进行解密</li>
-<li>服务端通过客户端传入的随机数构造对称加密算法，对返回结果内容进行加密后传输<br>
-<img src="https://ask.qcloudimg.com/http-save/6837186/mloginfful.jpeg" srcset="/img/loading.gif" lazyload alt="https"></li>
-</ul>
-</li>
-</ul>
-<h2 id="Nginx配置">Nginx配置</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs conf">upstream halo &#123;<br>  server 127.0.0.1:8090;<br>&#125;<br>server &#123;<br>  listen 80;<br>  listen [::]:80;<br>  server_name www.yourdomain.com;<br>  client_max_body_size 1024m;<br>  location / &#123;<br>    proxy_pass http://halo;<br>    proxy_set_header HOST $host;<br>    proxy_set_header X-Forwarded-Proto $scheme;<br>    proxy_set_header X-Real-IP $remote_addr;<br>    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+                <p>本文介绍利用华为云产品，搭建一个属于自己的网站~</p>
+<h1>背景知识</h1>
+<ol>
+<li>网络基础知识介绍：<a target="_blank" rel="noopener" href="https://fex-team.github.io/blog/2014/05/what-happen//">从输入 URL 到页面加载完成的过程中都发生了什么事情</a>。</li>
+<li>免费简单配置搭建网站：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yaorongke/article/details/119089190">GitHub Pages + Hexo搭建个人博客网站</a>。</li>
+</ol>
+<h1>快速部署</h1>
+<h2 id="购买服务器"><a target="_blank" rel="noopener" href="https://www.huaweicloud.com/product/hecs-light.html">购买服务器</a></h2>
+<p>现在云服务器厂商大多产品都可以免费试用，对新手上手很友好，同时也会有像双11等大促活动，例如笔者就在双11中用170块就入手了一台2核/4G/5Mbps的云服务器，还是很划算的~</p>
+<h2 id="部署应用">部署应用</h2>
+<p>有了服务器后，可以参考之前的文章先<a href="https://syntomic.github.io/2023/03/05/%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">搭建开发环境</a>。然后我们就可以部署应用，现在大多数软件都可以方便地利用Docker一键部署，这里以开源建站工具<a target="_blank" rel="noopener" href="https://docs.halo.run/">Halo</a>为例,。最后只需在VPC的安全组放行相应端口(8090), 即可在公网通过http协议 + 服务器ip + 端口访问应用。<br />但为了统一管理服务器上的访问，我们采用Nginx来配置反向代理，这样就可以直接使用服务器ip访问：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>  <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;<br>  <span class="hljs-attribute">listen</span> [::]:<span class="hljs-number">80</span>;<br>  <span class="hljs-attribute">server_name</span> www.yourdomain.com;<br>  <span class="hljs-attribute">client_max_body_size</span> <span class="hljs-number">1024m</span>;<br>  <span class="hljs-section">location</span> / &#123;<br>    <span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:8090;<br>    <span class="hljs-attribute">proxy_set_header</span> HOST <span class="hljs-variable">$host</span>;<br>    <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;<br>    <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>    <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1>便捷访问</h1>
+<p>IP地址不利于记忆，所以我们需要<a target="_blank" rel="noopener" href="https://www.huaweicloud.com/product/domain.html">注册一个易记的域名</a>访问，再配置个<a href="">A类型</a>的DNS解析绑定主机IP，但这个时候如果直接尝试利用域名访问的话会出现以下提示：<br /><br>
+<img src="/images/articles/404.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>这时因为使用大陆节点服务器提供互联网信息服务，需要在服务器提供商处提交<a href="">ICP备案</a>申请。但像笔者现在这样漂泊四方的状态，由于居住地和户口所在地不同，备案还通过不了，只能暂时采用<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/529826545">CNAME的方式</a>使用域名了。。</p>
+<h1>安全访问</h1>
+<p>由于http协议采用明文传输数据，很不安全，故现在大都都采用https(http+ssl/tls)加密传输：<br /><br>
+<img src="/images//articles/ssl.png" srcset="/img/loading.gif" lazyload alt=""><br>
+<br />我们可以先在<a target="_blank" rel="noopener" href="https://www.huaweicloud.com/product/scm.html">SSL证书管理服务</a>上购买DigiCert颁发的免费DV(Basic)证书，然后通过一系列流程后就能开启https访问：<br /><br>
+<img src="/images/articles/ssl_pipeline.png" srcset="/img/loading.gif" lazyload alt=""><br>
+<br />最后的Nginx配置如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>  <span class="hljs-attribute">listen</span>              <span class="hljs-number">443</span> ssl;  <br>	<span class="hljs-attribute">ssl_certificate</span>     cert/server.crt;  <br>	<span class="hljs-attribute">ssl_certificate_key</span> cert/server.key;<br>	<span class="hljs-attribute">ssl_session_cache</span>   shared:SSL:<span class="hljs-number">1m</span>;  <br>	<span class="hljs-attribute">ssl_session_timeout</span> <span class="hljs-number">5m</span>;  <br>	<span class="hljs-attribute">ssl_ciphers</span>         HIGH:!aNULL:!MD5;         <br>	<span class="hljs-attribute">ssl_prefer_server_ciphers</span>  <span class="hljs-literal">on</span>; <br>  <span class="hljs-attribute">server_name</span> syntomic.cn;<br>  <span class="hljs-attribute">client_max_body_size</span> <span class="hljs-number">1024m</span>;<br>  <span class="hljs-section">location</span> / &#123;<br>    <span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:8090;<br>    <span class="hljs-attribute">proxy_set_header</span> HOST <span class="hljs-variable">$host</span>;<br>    <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;<br>    <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>    <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样就完成了一个基本的网站搭建，使用自己的服务器，并可以使用https协议和域名访问。</p>
+<h1>总结</h1>
+<p>单体架构足以搭建出简单的应用系统，但随着系统功能越来越复杂，缺乏应用间自治和隔离的能力，又逐渐发展出了复杂的微服务架构。然而伴随着云原生化和无服务化的成熟，我们只需要简单地使用各种组件，像搭积木一样，就能构建出可靠、可扩展以及可维护的系统。</p>
+
                 
               </div>
             
@@ -376,7 +358,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
+  <a href="/categories/%E5%BA%94%E7%94%A8/" class="category-chain-item">应用</a>
   
   
 
@@ -391,7 +373,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%BA%94%E7%94%A8/" class="print-no-link">#应用</a>
+        <a href="/tags/%E6%80%BB%E7%BB%93/" class="print-no-link">#总结</a>
       
     </div>
   
@@ -403,7 +385,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>从零搭建网站(草稿)</div>
+      <div>从零搭建网站</div>
       <div>https://syntomic.github.io/2023/11/05/从零搭建网站/</div>
     </div>
     <div class="license-meta">
@@ -448,12 +430,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2023/12/09/%E6%B6%88%E7%81%AD%E6%9A%B4%E5%8A%9B%E6%89%AB%E6%8F%8F%EF%BC%8C%E4%B8%96%E7%95%8C%E5%B1%9E%E4%BA%8E%E6%B8%90%E8%BF%9B/" title="消灭暴力扫描，世界属于渐进">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">消灭暴力扫描，世界属于渐进</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/01/%E4%BB%8E%E5%AD%A6%E4%B9%A0%E5%88%B0%E5%B7%A5%E4%BD%9C/" title="从学习到工作(草稿)">
-                        <span class="hidden-mobile">从学习到工作(草稿)</span>
+                      <a href="/2023/11/01/%E6%88%91%E7%9A%84%E8%81%8C%E4%B8%9A%E7%94%9F%E6%B6%AF/" title="我的职业生涯">
+                        <span class="hidden-mobile">我的职业生涯</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -468,40 +456,28 @@
   
     <article id="comments" lazyload>
       
-    <div id="giscus" class="giscus"></div>
-    <script type="text/javascript">
-      Fluid.utils.loadComments('#giscus', function() {
-        var options = {"repo":"syntomic/comments","repo-id":"R_kgDOJ5guVA","category":"Announcements","category-id":"DIC_kwDOJ5guVM4CXxa0","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
-        var attributes = {};
-        for (let option in options) {
-          if (!option.startsWith('theme-')) {
-            var key = option.startsWith('data-') ? option : 'data-' + option;
-            attributes[key] = options[option];
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://cdn.staticfile.org/waline/2.15.5/waline.min.css')
+      Fluid.utils.createScript('https://cdn.staticfile.org/waline/2.15.5/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://waline-eight-liart.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
           }
-        }
-        var light = 'light';
-        var dark = 'dark';
-        window.GiscusThemeLight = light;
-        window.GiscusThemeDark = dark;
-        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
-        for (let attribute in attributes) {
-          var value = attributes[attribute];
-          if (value === undefined || value === null || value === '') {
-            delete attributes[attribute];
-          }
-        }
-        var s = document.createElement('script');
-        s.setAttribute('src', 'https://giscus.app/client.js');
-        s.setAttribute('crossorigin', 'anonymous');
-        for (let attribute in attributes) {
-          s.setAttribute(attribute, attributes[attribute]);
-        }
-        var ss = document.getElementsByTagName('script');
-        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
-        e.parentNode.insertBefore(s, e.nextSibling);
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
       });
-    </script>
-    <noscript>Please enable JavaScript to view the comments</noscript>
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
 
 
     </article>
@@ -610,20 +586,21 @@
 
   
     
-      <span id="busuanzi_container_site_pv" style="display: none">
+      <span id="leancloud-site-pv-container" style="display: none">
         总访问量 
-        <span id="busuanzi_value_site_pv"></span>
+        <span id="leancloud-site-pv"></span>
          次
       </span>
     
     
-      <span id="busuanzi_container_site_uv" style="display: none">
+      <span id="leancloud-site-uv-container" style="display: none">
         总访客数 
-        <span id="busuanzi_value_site_uv"></span>
+        <span id="leancloud-site-uv"></span>
          人
       </span>
     
     
+
   
 </div>
 
@@ -775,8 +752,6 @@
   <script defer src="/js/leancloud.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
