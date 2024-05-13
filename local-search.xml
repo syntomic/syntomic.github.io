@@ -4,16 +4,143 @@
   
   
   <entry>
-    <title>金融经济学读书笔记</title>
-    <link href="/2024/02/11/%E9%87%91%E8%9E%8D%E7%BB%8F%E6%B5%8E%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    <url>/2024/02/11/%E9%87%91%E8%9E%8D%E7%BB%8F%E6%B5%8E%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+    <title>计算广告：互联网商业变现的市场与技术</title>
+    <link href="/2024/05/08/%E8%AE%A1%E7%AE%97%E5%B9%BF%E5%91%8A%EF%BC%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%95%86%E4%B8%9A%E5%8F%98%E7%8E%B0%E7%9A%84%E5%B8%82%E5%9C%BA%E4%B8%8E%E6%8A%80%E6%9C%AF/"/>
+    <url>/2024/05/08/%E8%AE%A1%E7%AE%97%E5%B9%BF%E5%91%8A%EF%BC%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%95%86%E4%B8%9A%E5%8F%98%E7%8E%B0%E7%9A%84%E5%B8%82%E5%9C%BA%E4%B8%8E%E6%8A%80%E6%9C%AF/</url>
     
-    <content type="html"><![CDATA[<p>徐高 <a href="https://finaecon2019s.github.io/FinaEcon2019S/%E9%87%91%E8%9E%8D%E7%BB%8F%E6%B5%8E%E5%AD%A6%E4%BA%8C%E5%8D%81%E4%BA%94%E8%AE%B2-%E5%BE%90%E9%AB%98-2017%E6%98%A5.pdf">金融经济学</a> 读书笔记</p><span id="more"></span><h1>理论与艺术</h1><blockquote><p>如果把理性人世界比作狗主人，真实世界就是围绕狗主人跑来跑去的小狗。我们的目的是分析和预判小狗的行动。这既可以通过分析狗主人的行为来进行，也可以通过观察小狗的行为来达到。分析狗主人是金融理论的领域，是可以用科学的方法来推进的。而观察小狗则是处于金融理论之外的范畴，没有科学的方法可以应用，而只能艺术性地去把握。这就是金融艺术的领地。</p></blockquote><h1><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-02-11T14:25:34.028161677-vnjyzgoz.png" alt="2024-02-11T14:25:34.028161677-vnjyzgoz.png">整体内容</h1><ul><li><p>资产定价问题：给定资产未来的支付，判断资产现在应该值多少钱</p><ul><li>好资产的期望回报率应该高还是低？</li></ul></li></ul><h1><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-02-11T11:53:32.816844867-fdkqozhu.png" alt="">基础知识</h1><ul><li><p>金融市场：通过交易金融资产来实现资金融通的市场机制。</p></li><li><p>货币的创造：央行发行基础货币，商业银行利用基础货币在存款准备金率的限制下创造广义货币。</p></li></ul><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-02-17T22:41:47.308309639-xacphpao.png" alt="2024-02-17T22:41:47.308309639-xacphpao.png"></p><ul><li><p>利率：72法则，每年复利6%，只需要12 年就能把本金翻番</p><ul><li><p>不同时间的资金价值是不一样</p></li><li><p>现金流</p></li><li><p>NPV</p></li><li><p>IRR: <code>iPhone X 6299, 6个月每期1081.14，宣传年费率6%起, 但IRR为10%</code></p></li></ul></li><li><p>债券</p><ul><li><p>到期收益率：出一个较好衡量债券价格的指标</p></li><li><p>即期收益率：找出给新债券定价的方法</p></li><li><p>远期利率：从债券价格信息中萃取市场对未来利率走势的预期</p></li><li><p>久期：利率涨，短久期；利率降，长久期</p></li></ul></li><li><p>股票</p><ul><li><p>股利贴现模型(DDM)</p></li><li><p>股票市盈率</p></li><li><p>市场机制就保证了企业管理层必须以最大化股价为目标</p></li><li><p>中国特色：A股市场高度集中，可能长期偏离市场的偏好</p></li></ul></li></ul><h1>均衡定价</h1><ul><li><p>CAPM：所有投资者都采用均值方差分析来确定其最优组合，那么在理想的状况下，均衡时的不同资产的预期回报率之间会具有一种线性关系，即证券市场线(SML)</p><ul><li><p>药品公司 vs 钢铁公司: 钢铁公司的系统风险高于药品公司</p></li><li><p>回报率低于无风险利率的风险资产：保险</p></li><li><p>两种期望回报率一样的资产，波动率小好于选波动率大：资产组合</p></li><li><p>基金经理：Jensen’s Alpha</p></li></ul></li><li><p>C-CAPM: 基于消费的资本资产定价模型</p><ul><li><p>期望效用</p><ul><li>圣彼得堡悖论</li></ul></li><li><p>分析资产定价的正确逻辑</p><ul><li><p>投资者交易资产的最终目的是获得尽可能高的效用</p></li><li><p>资产交易不是零和博弈，而是资源在不同消费者之间进行优化配置的过程</p></li></ul></li><li><p>理论能够解释现实是一个了不起的成就，同时也暴露了理论的不足</p><ul><li><p>无风险利率之谜</p></li><li><p>风险溢价之谜</p></li></ul></li></ul></li></ul><h1>套利定价</h1><ul><li><p>期权衍生品定价：单期二叉树模型</p><ul><li><p>风险消除法</p></li><li><p>复制法定价</p></li><li><p>风险中性定价</p></li></ul></li><li><p>资产定价基本定理(居然用到了数学中的超平面分离定理)：在完备市场中只要不存在套利机会，就一定会存在一个正的状态价格向量来给所有资产定价</p><ul><li><p>风险中性概率</p></li><li><p>转换魔盒定价</p></li></ul></li><li><p>多期二叉树模型</p><ul><li><p>叠期望定律</p></li><li><p>鞅性：在风险中性概率下，对任何资产未来贴现价格的预期，都等于这一资产当前的贴现价格</p></li><li><p>连续时间模型(随机微积分)：Black-Scholes 公式</p></li></ul></li><li><p>最优停时：到期日不确定的资产定价</p><ul><li>按揭贷款定价：可以提前还款</li></ul></li><li><p>动态对冲</p><ul><li><p>Delta、Gamma、Vega 与其他希腊字母</p></li><li><p>组合保险：越低越卖，放大市场波动</p></li></ul></li></ul><h1>金融摩擦</h1><p>信息不对称</p><ul><li><p>事后：道德风险</p><ul><li><p>委托代理模型(契约理论) ：出借人(项目的成功)和借款人(项目成功+偷懒)之间的利益导向不完全一致</p></li><li><p>信贷配给：借款者即使愿意支付资金出借人所要求的利率水平（甚至更高），仍无法获得贷款的现象</p></li><li><p><strong>爱护自己的声誉</strong></p></li></ul></li><li><p>事前：逆向选择</p><ul><li><p>完美的市场：公司价值与资本结构无关(MM定理)</p></li><li><p>不对称(投资者不知道企业类型): 市场崩溃 vs 交叉补贴</p></li><li><p>啄序假说：为自己的投资项目融资时，公司会优先选择内部融资（留存利润），然后是债券融资，然后才是股票融资(信息强度从低到高)</p></li><li><p>信息改变：分离均衡中坏企业股票增发的消息令股价走低</p></li></ul></li></ul><p>金融中介</p><ul><li><p>银行的本质(DD模型)：通过金融机构的期限错配来发挥期限转换的作用，为金融市场提供流动性</p></li><li><p>银行必须要受到管制：银行挤兑与存款保险</p></li><li><p>并非只有银行在做银行的本质业务：货币基金(余额宝)&amp;影子银行</p></li><li><p><strong>互联网金融不会消灭银行</strong></p></li></ul><h1>行为金融</h1><ul><li><p>有效市场：能在大街上捡到钱吗？</p></li><li><p>非理性：噪声交易者</p><ul><li><p>过度自信：超过90%的人认为自己属于前50%</p></li><li><p>乐观与一厢情愿</p></li><li><p>信念保持</p></li></ul></li><li><p>有限套利</p><ul><li>投资绩效约束(市场在证明你正确之前，可能已经先把你消灭了)：A 股市中的公募基金操作散户化</li></ul></li><li><p>障碍</p><ul><li><p>对理性行为的最优对策是理性的行为</p></li><li><p>对非理性的行为偏差的最优对策不是非理性</p></li></ul></li></ul><h1>风险管理</h1><ul><li><p>微观层面</p><ul><li><p>市场风险：希腊字母(组合价值)到风险度量值VaR(机构整体)</p></li><li><p>信用风险：信用评级</p></li><li><p>操作风险</p></li></ul></li><li><p>宏观层面</p><ul><li>次贷危机</li></ul></li></ul><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-02-17T21:50:45.460241266-cbmqqwxf.png" alt="2024-02-17T21:50:45.460241266-cbmqqwxf.png"></p>]]></content>
+    <content type="html"><![CDATA[<p>一切付费的信息、产品或服务的传播渠道，都是广告——广告主通过媒体达到低成本的用户接触；而计算广告的核心问题是为一系列用户和上下文的组合找到最合适的广告投放策略以优化整体广告活动的利润。</p><span id="more"></span><h1>历史</h1><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-05-08T11:40:31-yrdmgyeg.png" alt=""></p><ul><li><p>演化路径：品牌广告 vs 效果广告</p><ul><li><p>定向技术和交易形式：从最初的固定位置合约交易发展到进行受众定向、按展示量结算的合约交易，再到竞价交易方式，并最终发展成开放的实时竞价交易市场。</p></li><li><p>产品展现逻辑：广告位&amp;内容 -&gt; 原生广告。</p></li></ul></li><li><p>结算方式</p></li></ul><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-05-08T10:31:56-pimpzfsq.png" alt="2024-05-08T10:31:56-pimpzfsq.png"></p><h1>计算</h1><p>定义：为一系列用户与环境的组合找到最合适的广告投放策略以优化整体广告活动的利润</p><ul><li>主动优化成本：r(revenue) = eCPM(expected Cost Per Mille) = CTR * CV(click value)</li></ul><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-05-08T11:46:33-gvukfuwa.png" alt=""></p><ul><li><p>受众定向：<strong>有价值的数据来源</strong></p><ul><li>广告特征数据&amp;用户画像数据&amp;用户历史行为数据</li></ul></li></ul><p><img src="https://staticcdn1-5.umiwi.com/epms_ebook/b033e879a4463312bd7f35397f5e984b.jpg?x-oss-process=image/resize,w_3440,m_lfit" alt=""></p><ul><li><p>个性化系统</p><ul><li><p>在线分配：量的约束和投放时即时决策</p></li><li><p>市场的机制设计：多方博弈下达到动态平衡</p></li><li><p>点击/转化率预估</p></li><li><p>个性化推荐：实时竞价</p></li></ul></li></ul><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-05-08T11:51:18-kimryadx.png" alt=""></p><h1>业界</h1><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-05-08T11:43:47-lqlruzfl.png" alt=""></p><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-05-08T10:03:53-ishbmxup.png" alt=""></p>]]></content>
     
     
     <categories>
       
-      <category>人生</category>
+      <category>读书笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数据湖</title>
+    <link href="/2024/04/20/%E6%95%B0%E6%8D%AE%E6%B9%96/"/>
+    <url>/2024/04/20/%E6%95%B0%E6%8D%AE%E6%B9%96/</url>
+    
+    <content type="html"><![CDATA[<p>数据湖定义为一个集中式存储，以任意规模存储所有结构化和非机构化数据，但从应用上来说可以用作离线数仓的替代(能力增强)，以及与实时数仓的统一(牺牲一定的实时性)，然而实际的降本增效效果是其大规模应用的障碍。</p><span id="more"></span><h1>WHY</h1><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-02-25T19:33:29.171947943-bgbxfjba.png" alt="2024-02-25T19:33:29.171947943-bgbxfjba.png"></p><p>历史：数据库(事务) -&gt; 数据仓库(分析) -&gt; 数据湖(非结构化) -&gt; 湖仓一体(统一)</p><ul><li><p>低成本&amp;高可靠性</p></li><li><p>元数据</p></li><li><p>时间旅行</p></li><li><p><strong>更新</strong></p></li></ul><h1>WHAT</h1><p><strong>表格式</strong></p><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-04-20T20:25:37-qgcjtpil.png" alt=""></p><h1>HOW</h1><p>三剑客：Delta vs Iceberg vs Hudi</p><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-04-20T20:29:18-mkpnsanw.png" alt=""></p><p>后起之秀：Paimon</p><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-04-20T20:35:11-ywjqaaqz.png" alt=""></p><h1>USE CASE</h1><ul><li><p>CDC入湖</p></li><li><p>状态外置</p></li><li><p>流批&amp;全增量一体</p></li></ul><h1>OLAP</h1><p>查询加速</p><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-04-20T20:34:55-eqgqshds.png" alt=""></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>简介</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>AI Agent</title>
+    <link href="/2024/04/20/AI-Agent/"/>
+    <url>/2024/04/20/AI-Agent/</url>
+    
+    <content type="html"><![CDATA[<p>如何利用大模型的能力来重塑各行各业，AI Agent也许就是其中一个答案~</p><span id="more"></span><h1>WHY</h1><p>大模型应用方式演变：Promot工程 -&gt; RAG -&gt; CoT -&gt; ReAct</p><ul><li><p>只能告诉你怎么做，但不能帮你做</p></li><li><p>出现幻觉，返回错误的信息</p></li><li><p>对最新和专业知识的欠缺</p></li></ul><h1>WHAT</h1><p><a href="https://lilianweng.github.io/posts/2023-06-23-agent/">LLM Powered Autonomous Agents</a></p><p><img src="https://lilianweng.github.io/posts/2023-06-23-agent/agent-overview.png" alt=""></p><h1>HOW</h1><p><a href="https://github.com/e2b-dev/awesome-ai-agents">AI Agents Langdscape</a></p><ul><li><p>单智能体</p></li><li><p>多智能体：<a href="https://github.com/microsoft/autogen">AutoGen</a></p></li><li><p>人&amp;智能体</p></li></ul><p><img src="https://github.com/e2b-dev/awesome-ai-agents/raw/main/assets/landscape-latest.png" alt="Chart of AI Agents Landscape"></p><h1>NEXT</h1><p>AI等级：</p><ul><li><p>L1：tool</p></li><li><p>L2：copilot</p></li><li><p>L3：agent</p></li><li><p>L4：species</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>简介</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>机器学习</title>
+    <link href="/2024/03/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2024/03/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<p>机器学习是从有限的观测数据中学习（或“猜测”）出具有一般性的规律，并可以将总结出来的规律推广应用到未观测样本，包含三个基本要素：模型、学习准则、优化算法。</p><span id="more"></span><h1>整体流程</h1><p>问题建模：数据 + 算力 + 算法</p><ol><li><p>明确问题，着眼大局</p></li><li><p>获取数据</p></li><li><p>探索数据以获得洞察力</p></li><li><p>面向机器学习准备数据</p></li><li><p>选择和训练模型</p></li><li><p>微调模型</p></li><li><p>展现解决方案</p></li><li><p>启动、监控、维护系统</p></li></ol><h1>经典模型</h1><ul><li><p>线性回归</p></li><li><p>支持向量机</p></li><li><p>决策树</p></li><li><p>随机森林</p></li><li><p>K-Means</p></li></ul><h1>深度学习</h1><ul><li><p>前馈神经网络</p></li><li><p>卷积神经网络</p></li><li><p>循环神经网络</p></li><li><p>生成模型</p></li><li><p>注意力机制</p></li></ul><h1>强化学习</h1><ul><li><p>值函数</p></li><li><p>策略函数</p></li></ul><h1>应用</h1><ul><li>推荐系统：召回 -&gt; 粗排 -&gt; 精排 -&gt; 重排</li></ul><p><img src="https://pic4.zhimg.com/v2-584d8db40db4ca6526a593d1737e1d3f_r.jpg" alt=""></p><ul><li><p>自然语言处理：Encoder-Only(BERT) vs Decoder-Only(GPT)</p></li><li><p>大模型应用：Langchain</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI</category>
+      
+      <category>读书笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>简介</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>科学上网</title>
+    <link href="/2024/03/16/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    <url>/2024/03/16/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</url>
+    
+    <content type="html"><![CDATA[<p>由于众所周知的原因，很多国外网站都访问不了，虽然可以配置国内镜像的方式加速访问，但还是不够通用，本篇文章将介绍一种实现科学上网的方法。</p><span id="more"></span><h1>快速开始</h1><ol><li><p><a href="https://v2sx.com/cart.php">产品购买</a>：</p><ol><li><p>笔者这里购买的是标准版包年，使用优惠码<strong>v2server</strong>可以有20%的折扣：<br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-05-07T21:27:50-nnjstkqr.png" alt=""></p></li><li><p>购买成功后复制订阅地址：<img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-05-07T21:50:31-jicbiuvi.png" alt=""></p></li></ol></li><li><p>客户端安装：添加订阅地址并更新相应订阅</p><ol><li><p><a href="https://github.com/2dust/v2rayN/releases">Windows客户端</a>：<img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-05-07T22:06:27-kxpwkcrt.png" alt=""></p></li><li><p><a href="https://github.com/yanue/V2rayU/releases">Mac客户端</a></p></li><li><p><a href="https://github.com/2dust/v2rayNG/releases">Android客户端</a></p></li></ol></li><li><p>访问<a href="https://www.google.com">Google</a>进行验证</p></li></ol><h1>最佳实践</h1><ul><li><p>ChatGPT</p><ul><li><p><a href="https://chatgptzh.github.io/how-to-register-a-chatgpt-account-in-china">虚拟电话号码</a></p></li><li><p><a href="https://www.vpsdawanjia.com/6149.html">虚拟信用卡</a></p></li></ul></li><li><p>环境变量</p><pre><code class="hljs">export ALL_PROXY = socks5://127.0.0.1:10808</code></pre></li></ul><h1>基础原理</h1><p><a href="https://www.v2fly.org/">V2Ray</a>：下一步实现<a href="https://guide.v2fly.org/app/transparent_proxy.html#%E4%BC%98%E7%82%B9">透明代理</a>~<br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-05-08T21:28:49-xijcighm.png" alt=""></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>应用</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>金融经济学</title>
+    <link href="/2024/02/11/%E9%87%91%E8%9E%8D%E7%BB%8F%E6%B5%8E%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <url>/2024/02/11/%E9%87%91%E8%9E%8D%E7%BB%8F%E6%B5%8E%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<p>金融处理的是金融资产在不同主体之间的分配，而时间和不确定性是金融活动两个不可缺少的维度，<a href="https://finaecon2019s.github.io/FinaEcon2019S/%E9%87%91%E8%9E%8D%E7%BB%8F%E6%B5%8E%E5%AD%A6%E4%BA%8C%E5%8D%81%E4%BA%94%E8%AE%B2-%E5%BE%90%E9%AB%98-2017%E6%98%A5.pdf">金融经济学</a>运用经济分析的技术来理解个人的储蓄与投资决策，公司的投资、融资、分红决策，利率、金融资 产和衍生品价格的水平和性质，以及金融中介所发挥的经济作用。</p><span id="more"></span><h1>理论与艺术</h1><blockquote><p>如果把理性人世界比作狗主人，真实世界就是围绕狗主人跑来跑去的小狗。我们的目的是分析和预判小狗的行动。这既可以通过分析狗主人的行为来进行，也可以通过观察小狗的行为来达到。分析狗主人是金融理论的领域，是可以用科学的方法来推进的。而观察小狗则是处于金融理论之外的范畴，没有科学的方法可以应用，而只能艺术性地去把握。这就是金融艺术的领地。</p></blockquote><h1><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-02-11T14:25:34.028161677-vnjyzgoz.png" alt="2024-02-11T14:25:34.028161677-vnjyzgoz.png">整体内容</h1><ul><li><p>资产定价问题：给定资产未来的支付，判断资产现在应该值多少钱</p><ul><li>好资产的期望回报率应该高还是低？</li></ul></li></ul><h1><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-02-11T11:53:32.816844867-fdkqozhu.png" alt="">基础知识</h1><ul><li><p>金融市场：通过交易金融资产来实现资金融通的市场机制。</p></li><li><p>货币的创造：央行发行基础货币，商业银行利用基础货币在存款准备金率的限制下创造广义货币。</p></li></ul><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-02-17T22:41:47.308309639-xacphpao.png" alt="2024-02-17T22:41:47.308309639-xacphpao.png"></p><ul><li><p>利率：72法则，每年复利6%，只需要12 年就能把本金翻番</p><ul><li><p>不同时间的资金价值是不一样</p></li><li><p>现金流</p></li><li><p>NPV</p></li><li><p>IRR: <code>iPhone X 6299, 6个月每期1081.14，宣传年费率6%起, 但IRR为10%</code></p></li></ul></li><li><p>债券</p><ul><li><p>到期收益率：出一个较好衡量债券价格的指标</p></li><li><p>即期收益率：找出给新债券定价的方法</p></li><li><p>远期利率：从债券价格信息中萃取市场对未来利率走势的预期</p></li><li><p>久期：利率涨，短久期；利率降，长久期</p></li></ul></li><li><p>股票</p><ul><li><p>股利贴现模型(DDM)</p></li><li><p>股票市盈率</p></li><li><p>市场机制就保证了企业管理层必须以最大化股价为目标</p></li><li><p>中国特色：A股市场高度集中，可能长期偏离市场的偏好</p></li></ul></li></ul><h1>均衡定价</h1><ul><li><p>CAPM：所有投资者都采用均值方差分析来确定其最优组合，那么在理想的状况下，均衡时的不同资产的预期回报率之间会具有一种线性关系，即证券市场线(SML)</p><ul><li><p>药品公司 vs 钢铁公司: 钢铁公司的系统风险高于药品公司</p></li><li><p>回报率低于无风险利率的风险资产：保险</p></li><li><p>两种期望回报率一样的资产，波动率小好于选波动率大：资产组合</p></li><li><p>基金经理：Jensen’s Alpha</p></li></ul></li><li><p>C-CAPM: 基于消费的资本资产定价模型</p><ul><li><p>期望效用</p><ul><li>圣彼得堡悖论</li></ul></li><li><p>分析资产定价的正确逻辑</p><ul><li><p>投资者交易资产的最终目的是获得尽可能高的效用</p></li><li><p>资产交易不是零和博弈，而是资源在不同消费者之间进行优化配置的过程</p></li></ul></li><li><p>理论能够解释现实是一个了不起的成就，同时也暴露了理论的不足</p><ul><li><p>无风险利率之谜</p></li><li><p>风险溢价之谜</p></li></ul></li></ul></li></ul><h1>套利定价</h1><ul><li><p>期权衍生品定价：单期二叉树模型</p><ul><li><p>风险消除法</p></li><li><p>复制法定价</p></li><li><p>风险中性定价</p></li></ul></li><li><p>资产定价基本定理(居然用到了数学中的超平面分离定理)：在完备市场中只要不存在套利机会，就一定会存在一个正的状态价格向量来给所有资产定价</p><ul><li><p>风险中性概率</p></li><li><p>转换魔盒定价</p></li></ul></li><li><p>多期二叉树模型</p><ul><li><p>叠期望定律</p></li><li><p>鞅性：在风险中性概率下，对任何资产未来贴现价格的预期，都等于这一资产当前的贴现价格</p></li><li><p>连续时间模型(随机微积分)：Black-Scholes 公式</p></li></ul></li><li><p>最优停时：到期日不确定的资产定价</p><ul><li>按揭贷款定价：可以提前还款</li></ul></li><li><p>动态对冲</p><ul><li><p>Delta、Gamma、Vega 与其他希腊字母</p></li><li><p>组合保险：越低越卖，放大市场波动</p></li></ul></li></ul><h1>金融摩擦</h1><p>信息不对称</p><ul><li><p>事后：道德风险</p><ul><li><p>委托代理模型(契约理论) ：出借人(项目的成功)和借款人(项目成功+偷懒)之间的利益导向不完全一致</p></li><li><p>信贷配给：借款者即使愿意支付资金出借人所要求的利率水平（甚至更高），仍无法获得贷款的现象</p></li><li><p><strong>爱护自己的声誉</strong></p></li></ul></li><li><p>事前：逆向选择</p><ul><li><p>完美的市场：公司价值与资本结构无关(MM定理)</p></li><li><p>不对称(投资者不知道企业类型): 市场崩溃 vs 交叉补贴</p></li><li><p>啄序假说：为自己的投资项目融资时，公司会优先选择内部融资（留存利润），然后是债券融资，然后才是股票融资(信息强度从低到高)</p></li><li><p>信息改变：分离均衡中坏企业股票增发的消息令股价走低</p></li></ul></li></ul><p>金融中介</p><ul><li><p>银行的本质(DD模型)：通过金融机构的期限错配来发挥期限转换的作用，为金融市场提供流动性</p></li><li><p>银行必须要受到管制：银行挤兑与存款保险</p></li><li><p>并非只有银行在做银行的本质业务：货币基金(余额宝)&amp;影子银行</p></li><li><p><strong>互联网金融不会消灭银行</strong></p></li></ul><h1>行为金融</h1><ul><li><p>有效市场：能在大街上捡到钱吗？</p></li><li><p>非理性：噪声交易者</p><ul><li><p>过度自信：超过90%的人认为自己属于前50%</p></li><li><p>乐观与一厢情愿</p></li><li><p>信念保持</p></li></ul></li><li><p>有限套利</p><ul><li>投资绩效约束(市场在证明你正确之前，可能已经先把你消灭了)：A 股市中的公募基金操作散户化</li></ul></li><li><p>障碍</p><ul><li><p>对理性行为的最优对策是理性的行为</p></li><li><p>对非理性的行为偏差的最优对策不是非理性</p></li></ul></li></ul><h1>风险管理</h1><ul><li><p>微观层面</p><ul><li><p>市场风险：希腊字母(组合价值)到风险度量值VaR(机构整体)</p></li><li><p>信用风险：信用评级</p></li><li><p>操作风险</p></li></ul></li><li><p>宏观层面</p><ul><li>次贷危机</li></ul></li></ul><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-02-17T21:50:45.460241266-cbmqqwxf.png" alt="2024-02-17T21:50:45.460241266-cbmqqwxf.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>读书笔记</category>
       
     </categories>
     
@@ -85,7 +212,7 @@
     <link href="/2023/11/01/%E6%88%91%E7%9A%84%E8%81%8C%E4%B8%9A%E7%94%9F%E6%B6%AF/"/>
     <url>/2023/11/01/%E6%88%91%E7%9A%84%E8%81%8C%E4%B8%9A%E7%94%9F%E6%B6%AF/</url>
     
-    <content type="html"><![CDATA[<ul><li></li></ul><p>作为一个一直学纯数学的同学，在被迫转硕后不得不思考今后的人生：换个学校继续读博，但不想再浪费时间；直接去当个高中老师，但尚未实现自身的价值；因为一直对计算机比较感兴趣，最终决定换个方向从头开始，希望在接受社会的毒打后能够证明自己的价值。本篇文章将记录职业生涯一路走来的点点滴滴~</p><span id="more"></span><h1>自学：2019-01~2019-07</h1><p>在得知转硕的结果到最终毕业其实只有一年的时间，只在大一学过的一点C语言等计算机基础知识早已遗忘，但从高中开始一直自学的我相信：</p><blockquote><p>只要明确整个知识框架，具体细节对一个学数学的人来说不是问题~</p></blockquote><p>于是通过网络找寻各种资料，开启了半年宅寝室的学习之旅：</p><ol><li>从基础开始<ul><li>编程语言<ul><li>人生苦短，我用<a href="https://www.liaoxuefeng.com/wiki/1016959663602400">Python</a></li></ul></li><li>数据结构与算法<ul><li><a href="">数据结构与算法-Python语言描述</a>: 基于Python语言讲解</li><li><a href="https://book.douban.com/subject/27176836/">Algorithms-illuminated</a>: 斯坦福经典课程</li></ul></li><li>操作系统<ul><li><a href="https://book.douban.com/subject/4889838/">鸟哥的Linux私房菜</a>：通俗易懂</li></ul></li><li>计算机网络<ul><li><a href="https://book.douban.com/subject/26960678/">计算机网络(第7版) 谢希仁</a>：全面系统</li></ul></li></ul></li><li>应用<ul><li>前端<ul><li><a href="https://www.runoob.com/html/html5-intro.html">HTML/CSS/JavaScript</a>：内容/样式/交互</li></ul></li><li>后端<ul><li><a href="https://book.douban.com/subject/30310340/">Flask Web开发实战</a>：从学习到实战</li></ul></li><li>数据库<ul><li><a href="https://www.liaoxuefeng.com/wiki/1177760294764384">MySQL</a>：SQL Is All Your Need</li></ul></li></ul></li><li>数据<ul><li>数据采集<ul><li><a href="https://book.douban.com/subject/30175598/">Python3网络爬虫开发实战</a>：知识的综合运用</li></ul></li><li>数据分析<ul><li><a href="https://book.douban.com/subject/25779298/">Python for Data Analysis</a>：利用Python处理数据</li></ul></li><li>大数据<ul><li><a href="https://book.douban.com/subject/27606713/">大数据技术原理与应用</a>：大数据技术简要介绍</li></ul></li></ul></li><li>AI<ul><li>机器学习<ul><li><a href="https://book.douban.com/subject/27154347/">Hands-On Machine Learning with Scikit-Learn &amp;TensorFlow</a>：一个完整的机器学习项目</li></ul></li><li>深度学习<ul><li><a href="https://book.douban.com/subject/35044046/">神经网络与深度学习</a>：理论要扎实</li><li><a href="https://book.douban.com/subject/30293801/">Python深度学习</a>：上手实践</li><li><a href="http://fancyerii.github.io/2019/03/14/dl-book/">深度学习理论与实战：提高篇</a>：跟上AI的发展</li></ul></li><li>NLP<ul><li><a href="https://book.douban.com/subject/25746399/">统计自然语言处理</a>: 这本书我真的看过吗》</li><li>知识图谱：<strong>Things Not Strings</strong></li></ul></li></ul></li><li>工具:  工欲善其事，必先利其器<ul><li>vscode</li><li>git</li><li>docker</li></ul></li><li>面试<ul><li><a href="https://book.douban.com/subject/27008702/">剑指offer</a>：看明白了但不代表会做</li><li><a href="https://book.douban.com/subject/30285146/">百面机器学习</a>：看了但也没完全看</li><li><a href="https://book.douban.com/subject/30243136/">美团机器学习实践</a>：假装自己实践过了</li></ul></li></ol><p>半年的时间，有了一个大概的框架，一份毫无含金量的简历，以及多了一个胖成球的人。。<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/cv1.png" alt=""></p><h1>校招：2019-08~2019-10</h1><p>专业不对口，没有实习经历，也不喜欢背八股文以及刷算法题，在一次次地失败后一度陷入了自我怀疑中：</p><ul><li>提前批：不用笔试，凭着教育背景还可以直接参与面试<ul><li>iHandy(后端)：第一次面试，10分钟就把我请了出去</li><li>美团(算法)：面试官教我如何面试</li><li>阿里(算法)：总算撑过了完整的1小时面试，但技术细节没有说清楚</li></ul></li><li>正式批：前期笔试都通过不了，积累经验后才有了一些面试机会<ul><li>百度(算法)：被质疑文凭了</li><li>字节(后端)：两次机会都没有抓住</li><li>华为(算法)：面试官帮我进入下一轮面试</li></ul></li></ul><p>到了10月底，我还没拿到任何一家公司的offer，不过还好老天最后给我开了一扇窗。这个时候网易将我调剂到了测试开发的职位上，意外地很顺利就通过面试，然后很快就拿到了意向书。悬着的心终于可以放下了，感谢网易游戏给了我这样一个机会，来到了广州开启了我的职业生涯~<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/first_job.jpg" alt=""></p><h1>网易：2020-01~2023-05</h1><h2 id="试用期：2020-01-2020-05">试用期：2020-01~2020-05</h2><p>学数学给人的第一印象应该做算法，所以试用期交给我的任务就是实现动捕数据自动修复算法：<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/motion.png" alt=""><br><br />而当时正值疫情居家办公期间，组内之前也没有做过类似工作，接受到这个任务后，还是按照之前学生的思维：独自查阅相应资料熟悉背景，看论文比较不同方案，缺少了和需求方的交流。因为对深度学习的方法也没有什么经验，最终只是复现了一个矩阵补全的算法，编写了个插件把整个流程跑通了，通过了试用期。<br /></p><p>但其实这个插件也没有用起来，因为动捕软件更新后推出了自动修复数据的功能。后续也发现网易AI LAB也做了相应的<a href="https://zhuanlan.zhihu.com/p/400009398">工作</a>，看来还是得专业的人来做专业的事~</p><h2 id="探索期：2020-05-2020-12">探索期：2020-05~2020-12</h2><p>接着被安排做数据中台的项目，但之前部门并没有做过什么数据相关的工作，对数据中台没有清晰的概念，所以做了很多探索性的工作，在一些场景里摸着石头过河:</p><ul><li>奖励监控：对比了业界许多异常检测的方法后，对<a href="https://tech.meituan.com/2017/04/21/order-holtwinter.html">美团外卖订单量预测异常报警模型</a>照猫画虎，调包<a href="https://facebook.github.io/prophet/">Prophet</a>简单跑通了个流程。但老板们对进度不太满意，没有继续研究下去了，虽然后面才知道做算法，其实最关键的是做好特征工程，而当时的我却忽略了这一点。</li><li>支付转化：算是做大数据的开始吧，但其实最开始采用的是从ELK上拉数据到本地，然后用Python分析的方案。后面才接触到公司的大数据组件，成为了一个SQL Boy，做了点数仓建设的工作。但其实这件事最大的成功点是数据挖掘，找到了之前计费、用户体验等部门都没有注意到的价值。</li><li>性能报表：其实就是一个工具人，做了一段时间API开发，但也算是之前自己做后端工程师的想法得到了满足。<br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/sjzt.png" alt=""></li></ul><h2 id="成长期：2021-01-2022-06">成长期：2021-01~2022-06</h2><p>之后天降猛男，来了个总监级别的大佬，新成立中台部门，招了一些专业的人来做专业的事，带来了新的协同与组织关系。而这时的我也不满足于做一个SQL Boy，开始学习Java，用Flink进行实时开发：</p><ul><li>奖励监控：利用Flink开发出了一个动态规则引擎，可以让业务人员自由地配置告警规则，实时生效。期间不断地查阅技术文档、开源代码、优化方案，算是第一次有了自己比较满意的技术实现。</li><li>安全中台:  不断引入新技术来解决业务问题：引入Flink SQL来解决数据倾斜的问题；引入PyFlink算法策略部署问题；引入Flink AI FLow来解决AI工程化的问题等。围绕着Flink生态做出了一些创新的工作。</li></ul><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/flink.png" alt=""><br><br /> 这一段时间感觉每天都在学习成长，业务在不断发展，工作做着很开心，职级也三连跳，这算是梦想的职场生活了吧~</p><h2 id="迷茫期：2022-07-2023-05">迷茫期：2022-07~2023-05</h2><p>但好景不长，随着互联网行业降本增效之风席卷而来，业务的发展方向和我的个人兴趣出现了分歧，对自己的职业规划产生了迷茫，团队里看不到想做的事情。经过长时间的思考后，还是决定再去外面看一看，我的网易生涯就暂时告一段落了：<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/cv2.png" alt=""></p><h1>社招：2023-02~2023-05</h1><p>这个时候我依然抱着学习的心态，我觉得我的职业生涯还没有定型，还是可以做任何事。但社招主要看是否合适 ，企业已经没有耐心再花时间培养了：</p><ul><li>网易雷火：内部机会，不太合适，需要后端经验。</li><li>字节：依然两次机会：第一次不太合适，离线数仓经验欠缺；第二次关注的Flink技术点不一致。</li><li>拼多多：实时场景可能还有些欠缺，算法题也没有回答上来。</li></ul><p>其实我觉得仅通过几次面试并不能了解一个人的特点，这就是我开始写文章记录自己所思所想的部分原因。 虽然发现像证券、基金这些公司对我这种教育背景不错，有大厂经历的人感觉还不错，但我还是想再学点技术。于是我完全没有给自己留后路地来到了杭州，希望可以继续在大数据领域中深入~<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/second_job.jpg" alt=""></p><h1>蚂蚁：2023-06~至今</h1><h2 id="离线数据：2023-06-2024-01">离线数据：2023-06~2024-01</h2><p>虽然转换了行业和技术，但来到了专门做数据的部门，确实数据做得比较成熟，有很多可以学习的地方：职业划分比较细，每个方向上都有比较深的沉淀；金融业务对数据要求高，非常注重数据质量和合规；数据体量大，业务场景也足够复杂等。但做了一段时间后，发现自己的工作集中在取数工具人和历史包袱治理上，技术上也重新回到了SQL boy，没有什么沉淀和价值感，找不到兴趣点。<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/sjzl.png" alt=""></p><p><br />不过好在这边转岗比较方便，我发现当我听到湖仓一体的时候，我本能的就比较感兴趣，于是我又回到了实时技术中，开启了新一段旅途。</p><h2 id="实时数据：2024-01-至今">实时数据：2024-01~至今</h2><p>继续学习中…</p><h1>未完待续</h1><p>机缘巧合下进入了大数据领域，并逐渐建立起了自己的知识体系，貌似已经习惯了打工人的生活。但其实我依然没有变，还是像之前学数学一样，针对一个问题，喜欢不断寻求更好地解法。然而在工作中，可能更需要立体的思考，形成一套解决方案。如何将爱好特长和工作结合起来，发挥出自己的全部潜能，这是一个需要我持续探索的问题。</p>]]></content>
+    <content type="html"><![CDATA[<ul><li></li></ul><p>作为一个一直学纯数学的同学，在被迫转硕后不得不思考今后的人生：换个学校继续读博，但不想再浪费时间；直接去当个高中老师，但尚未实现自身的价值；因为一直对计算机比较感兴趣，最终决定换个方向从头开始，希望在接受社会的毒打后能够证明自己的价值。本篇文章将记录职业生涯一路走来的点点滴滴~</p><span id="more"></span><h1>自学：2019-01~2019-07</h1><p>在得知转硕的结果到最终毕业其实只有一年的时间，只在大一学过的一点C语言等计算机基础知识早已遗忘，但从高中开始一直自学的我相信：</p><blockquote><p>只要明确整个知识框架，具体细节对一个学数学的人来说不是问题~</p></blockquote><p>于是通过网络找寻各种资料，开启了半年宅寝室的学习之旅：</p><ol><li>从基础开始<ul><li>编程语言<ul><li>人生苦短，我用<a href="https://www.liaoxuefeng.com/wiki/1016959663602400">Python</a></li></ul></li><li>数据结构与算法<ul><li><a href="">数据结构与算法-Python语言描述</a>: 基于Python语言讲解</li><li><a href="https://book.douban.com/subject/27176836/">Algorithms-illuminated</a>: 斯坦福经典课程</li></ul></li><li>操作系统<ul><li><a href="https://book.douban.com/subject/4889838/">鸟哥的Linux私房菜</a>：通俗易懂</li></ul></li><li>计算机网络<ul><li><a href="https://book.douban.com/subject/26960678/">计算机网络(第7版) 谢希仁</a>：全面系统</li></ul></li></ul></li><li>应用<ul><li>前端<ul><li><a href="https://www.runoob.com/html/html5-intro.html">HTML/CSS/JavaScript</a>：内容/样式/交互</li></ul></li><li>后端<ul><li><a href="https://book.douban.com/subject/30310340/">Flask Web开发实战</a>：从学习到实战</li></ul></li><li>数据库<ul><li><a href="https://www.liaoxuefeng.com/wiki/1177760294764384">MySQL</a>：SQL Is All Your Need</li></ul></li></ul></li><li>数据<ul><li>数据采集<ul><li><a href="https://book.douban.com/subject/30175598/">Python3网络爬虫开发实战</a>：知识的综合运用</li></ul></li><li>数据分析<ul><li><a href="https://book.douban.com/subject/25779298/">Python for Data Analysis</a>：利用Python处理数据</li></ul></li><li>大数据<ul><li><a href="https://book.douban.com/subject/27606713/">大数据技术原理与应用</a>：大数据技术简要介绍</li></ul></li></ul></li><li>AI<ul><li>机器学习<ul><li><a href="https://book.douban.com/subject/27154347/">Hands-On Machine Learning with Scikit-Learn &amp;TensorFlow</a>：一个完整的机器学习项目</li></ul></li><li>深度学习<ul><li><a href="https://book.douban.com/subject/35044046/">神经网络与深度学习</a>：理论要扎实</li><li><a href="https://book.douban.com/subject/30293801/">Python深度学习</a>：上手实践</li><li><a href="http://fancyerii.github.io/2019/03/14/dl-book/">深度学习理论与实战：提高篇</a>：跟上AI的发展</li></ul></li><li>NLP<ul><li><a href="https://book.douban.com/subject/25746399/">统计自然语言处理</a>: 这本书我真的看过吗》</li><li>知识图谱：<strong>Things Not Strings</strong></li></ul></li></ul></li><li>工具:  工欲善其事，必先利其器<ul><li>vscode</li><li>git</li><li>docker</li></ul></li><li>面试<ul><li><a href="https://book.douban.com/subject/27008702/">剑指offer</a>：看明白了但不代表会做</li><li><a href="https://book.douban.com/subject/30285146/">百面机器学习</a>：看了但也没完全看</li><li><a href="https://book.douban.com/subject/30243136/">美团机器学习实践</a>：假装自己实践过了</li></ul></li></ol><p>半年的时间，有了一个大概的框架，一份毫无含金量的简历，以及多了一个胖成球的人。。<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/cv1.png" alt=""></p><h1>校招：2019-08~2019-10</h1><p>专业不对口，没有实习经历，也不喜欢背八股文以及刷算法题，在一次次地失败后一度陷入了自我怀疑中：</p><ul><li>提前批：不用笔试，凭着教育背景还可以直接参与面试<ul><li>iHandy(后端)：第一次面试，10分钟就把我请了出去</li><li>美团(算法)：面试官教我如何面试</li><li>阿里(算法)：总算撑过了完整的1小时面试，但技术细节没有说清楚</li></ul></li><li>正式批：前期笔试都通过不了，积累经验后才有了一些面试机会<ul><li>百度(算法)：被质疑文凭了</li><li>字节(后端)：两次机会都没有抓住</li><li>华为(算法)：面试官帮我进入下一轮面试</li></ul></li></ul><p>到了10月底，我还没拿到任何一家公司的offer，不过还好老天最后给我开了一扇窗。这个时候网易将我调剂到了测试开发的职位上，意外地很顺利就通过面试，然后很快就拿到了意向书。悬着的心终于可以放下了，感谢网易游戏给了我这样一个机会，来到了广州开启了我的职业生涯~<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/first_job.jpg" alt=""></p><h1>网易：2020-01~2023-05</h1><h2 id="试用期：2020-01-2020-05">试用期：2020-01~2020-05</h2><p>学数学给人的第一印象应该做算法，所以试用期交给我的任务就是实现动捕数据自动修复算法：<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/motion.png" alt=""><br><br />而当时正值疫情居家办公期间，组内之前也没有做过类似工作，接受到这个任务后，还是按照之前学生的思维：独自查阅相应资料熟悉背景，看论文比较不同方案，缺少了和需求方的交流。因为对深度学习的方法也没有什么经验，最终只是复现了一个矩阵补全的算法，编写了个插件把整个流程跑通了，通过了试用期。<br /></p><p>但其实这个插件也没有用起来，因为动捕软件更新后推出了自动修复数据的功能。后续也发现网易AI LAB也做了相应的<a href="https://zhuanlan.zhihu.com/p/400009398">工作</a>，看来还是得专业的人来做专业的事~</p><h2 id="探索期：2020-05-2020-12">探索期：2020-05~2020-12</h2><p>接着被安排做数据中台的项目，但之前部门并没有做过什么数据相关的工作，对数据中台没有清晰的概念，所以做了很多探索性的工作，在一些场景里摸着石头过河:</p><ul><li>奖励监控：对比了业界许多异常检测的方法后，对<a href="https://tech.meituan.com/2017/04/21/order-holtwinter.html">美团外卖订单量预测异常报警模型</a>照猫画虎，调包<a href="https://facebook.github.io/prophet/">Prophet</a>简单跑通了个流程。但老板们对进度不太满意，没有继续研究下去了，虽然后面才知道做算法，其实最关键的是做好特征工程，而当时的我却忽略了这一点。</li><li>支付转化：算是做大数据的开始吧，但其实最开始采用的是从ELK上拉数据到本地，然后用Python分析的方案。后面才接触到公司的大数据组件，成为了一个SQL Boy，做了点数仓建设的工作。但其实这件事最大的成功点是数据挖掘，找到了之前计费、用户体验等部门都没有注意到的价值。</li><li>性能报表：其实就是一个工具人，做了一段时间API开发，但也算是之前自己做后端工程师的想法得到了满足。<br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/sjzt.png" alt=""></li></ul><h2 id="成长期：2021-01-2022-06">成长期：2021-01~2022-06</h2><p>之后天降猛男，来了个总监级别的大佬，新成立中台部门，招了一些专业的人来做专业的事，带来了新的协同与组织关系。而这时的我也不满足于做一个SQL Boy，开始学习Java，用Flink进行实时开发：</p><ul><li>奖励监控：利用Flink开发出了一个动态规则引擎，可以让业务人员自由地配置告警规则，实时生效。期间不断地查阅技术文档、开源代码、优化方案，算是第一次有了自己比较满意的技术实现。</li><li>安全中台:  不断引入新技术来解决业务问题：引入Flink SQL来解决数据倾斜的问题；引入PyFlink算法策略部署问题；引入Flink AI FLow来解决AI工程化的问题等。围绕着Flink生态做出了一些创新的工作。</li></ul><p><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/flink.png" alt=""><br><br /> 这一段时间感觉每天都在学习成长，业务在不断发展，工作做着很开心，职级也三连跳，这算是梦想的职场生活了吧~</p><h2 id="迷茫期：2022-07-2023-05">迷茫期：2022-07~2023-05</h2><p>但好景不长，随着互联网行业降本增效之风席卷而来，业务的发展方向和我的个人兴趣出现了分歧，对自己的职业规划产生了迷茫，团队里看不到想做的事情。经过长时间的思考后，还是决定再去外面看一看，我的网易生涯就暂时告一段落了：<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/cv2.png" alt=""></p><h1>社招：2023-02~2023-05</h1><p>这个时候我依然抱着学习的心态，我觉得我的职业生涯还没有定型，还是可以做任何事。但社招主要看是否合适 ，企业已经没有耐心再花时间培养了：</p><ul><li>网易雷火：内部机会，不太合适，需要后端经验。</li><li>字节：依然两次机会：第一次不太合适，离线数仓经验欠缺；第二次关注的Flink技术点不一致。</li><li>拼多多：实时场景可能还有些欠缺，算法题也没有回答上来。</li></ul><p>其实我觉得仅通过几次面试并不能了解一个人的特点，这就是我开始写文章记录自己所思所想的部分原因。 虽然发现像证券、基金这些公司对我这种教育背景不错，有大厂经历的人感觉还不错，但我还是想再学点技术。于是我完全没有给自己留后路地来到了杭州，希望可以继续在大数据领域中深入~<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/second_job.jpg" alt=""></p><h1>蚂蚁：2023-06~至今</h1><h2 id="离线数据：2023-06-2024-01">离线数据：2023-06~2024-01</h2><p>虽然转换了行业和技术，但来到了专门做数据的部门，确实数据做得比较成熟，有很多可以学习的地方：职业划分比较细，每个方向上都有比较深的沉淀；金融业务对数据要求高，非常注重数据质量和合规；数据体量大，业务场景也足够复杂等。但做了一段时间后，发现自己的工作集中在取数工具人和历史包袱治理上，技术上也重新回到了SQL boy，没有什么沉淀和价值感，找不到兴趣点。<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/sjzl.png" alt=""></p><p><br />不过好在这边转岗比较方便，我发现当我听到湖仓一体的时候，我本能的就比较感兴趣，于是我又回到了实时技术中，开启了新一段旅途。</p><h2 id="实时数据：2024-01-2024-05">实时数据：2024-01~2024-05</h2><p>由于实时涉及的组件众多以及其状态计算等独特性，和离线其实有较大差异，但其实也算是回归到老本行，在适应了下相应的技术栈后，也可以很快上手。同时也有机会利用数据湖技术来重塑实时研发范式，实现降本增效，看起来似乎是回归到理想的职业发展轨道上来了？<br /><br><img src="https://image-host.obs.cn-east-2.myhuaweicloud.com/articles/2024-05-13T22:09:33-rvsazqza.png" alt=""></p><p><br />但对于数据研发职业发展而言，要么更深入底层，做数据平台或引擎的开发，要么更贴近上层，利用数据驱动业务发展。而我由于非科班出身，又做上层数据应用多年，所以更适合将我定义为一个问题解决者：综合利用数据等技术手段系统地解决业务问题。所以我再次找寻更好的发展机会，希望可以做出一些有价值感工作~</p><h1>未完待续</h1><p>机缘巧合下进入了大数据领域，并逐渐建立起了自己的知识体系，貌似已经习惯了打工人的生活。但其实我依然没有变，还是像之前学数学一样，针对一个问题，喜欢不断寻求更好地解法。然而在工作中，可能更需要立体的思考，形成一套解决方案。如何将爱好特长和工作结合起来，发挥出自己的全部潜能，这是一个需要我持续探索的问题。</p>]]></content>
     
     
     <categories>
